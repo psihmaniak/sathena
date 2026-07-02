@@ -462,6 +462,13 @@ enum auto_trigger_flag {
 	ATF_WEAPON = 0x10,
 	ATF_MAGIC  = 0x20,
 	ATF_MISC   = 0x40,
+#ifdef SATHENA
+	// [SATHENA-SEAM] two data-layer flags on the auto-trigger bitset, next free bits. Filtered in
+	// skill_additional_effect / skill_counter_additional_effect: ATF_NORMALONLY requires
+	// attack_type&BF_NORMAL, ATF_SKILLONLY requires attack_type&BF_SKILL. Unset (vanilla) => no gate.
+	ATF_NORMALONLY = 0x80,
+	ATF_SKILLONLY  = 0x100,
+#endif
 };
 
 struct block_list {

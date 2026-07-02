@@ -1297,6 +1297,16 @@ int32 skill_additional_effect( block_list* src, block_list *bl, uint16 skill_id,
 						continue; //Range Failed.
 				}
 
+#ifdef SATHENA
+				// [SATHENA-SEAM] ATF_NORMALONLY / ATF_SKILLONLY gate — skip the effect unless the
+				// attack matches BF_NORMAL / BF_SKILL respectively. PLACEMENT: after the range filter,
+				// before the SELF/TARGET apply. Unset flags => vanilla (no gate).
+				if ((it.flag&ATF_NORMALONLY) && !(attack_type&BF_NORMAL))
+					continue;
+				if ((it.flag&ATF_SKILLONLY) && !(attack_type&BF_SKILL))
+					continue;
+#endif
+
 				if (it.flag&ATF_TARGET)
 					status_change_start(src, bl, it.sc, rate, 7, 0, 0, 0, it.duration, SCSTART_NONE, 100);
 				if (it.flag&ATF_SELF)
@@ -1734,6 +1744,16 @@ int32 skill_counter_additional_effect (block_list* src, block_list *bl, uint16 s
 					(it.flag&ATF_SHORT && !(attack_type&BF_SHORT)))
 					continue; //Range Failed.
 			}
+
+#ifdef SATHENA
+			// [SATHENA-SEAM] ATF_NORMALONLY / ATF_SKILLONLY gate — skip the effect unless the attack
+			// matches BF_NORMAL / BF_SKILL respectively. PLACEMENT: after the range filter, before the
+			// SELF/TARGET apply. Unset flags => vanilla (no gate).
+			if ((it.flag&ATF_NORMALONLY) && !(attack_type&BF_NORMAL))
+				continue;
+			if ((it.flag&ATF_SKILLONLY) && !(attack_type&BF_SKILL))
+				continue;
+#endif
 
 			if (it.flag&ATF_TARGET && src != bl)
 				status_change_start(src, src, it.sc, rate, 7, 0, 0, 0, it.duration, SCSTART_NONE, 100);
