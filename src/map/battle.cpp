@@ -6,6 +6,12 @@
 #include <cmath>
 #include <cstdlib>
 
+#ifdef SATHENA
+// [SATHENA-SEAM] DamageSeam interface — consumed by the staged damage hooks (FINAL choke
+// wired in battle_calc_damage; earlier stage boundaries added as needed).
+#include <custom/seam_damage.hpp>
+#endif
+
 #include <common/cbasetypes.hpp>
 #include <common/ers.hpp>
 #include <common/malloc.hpp>
@@ -2060,6 +2066,15 @@ int64 battle_calc_damage(block_list *src,block_list *bl,struct Damage *d,int64 d
 		if (!battle_status_block_damage(src, bl, tsc, d, damage, skill_id, skill_lv)) // Statuses that reduce damage to 0.
 			return 0;
 	}
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] DamageSeam FINAL stage — the applied-damage choke. PLACEMENT: the
+	// terminal return of battle_calc_damage, after every vanilla reduction/block, so the
+	// consumer has the last word on the number with both attacker(src)+target(bl) SC live.
+	// Shared by weapon (here) / magic / misc via this same function. If upstream adds a
+	// later adjustment, keep this immediately before the final return.
+	damage_seam()->onDamageStage( DMG_STAGE_FINAL, src, bl, d, damage, skill_id, skill_lv );
+#endif
 
 	return damage;
 }
