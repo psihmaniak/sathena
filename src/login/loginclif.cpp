@@ -22,6 +22,11 @@
 #include "loginchrif.hpp"
 #include "loginlog.hpp"
 
+#ifdef SATHENA
+// [SATHENA-SEAM] LoginSessionSeam interface — consumed by the dup-login hook below.
+#include <custom/seam_loginsession.hpp>
+#endif
+
 /**
  * Transmit auth result to client.
  * @param fd: client file desciptor link
@@ -85,7 +90,15 @@ static void logclif_auth_ok(struct login_session_data* sd) {
 
 		if( data )
 		{// account is already marked as online!
-			if( data->char_server > -1 )
+			bool sathena_login_spare = false;
+#ifdef SATHENA
+			// [SATHENA-SEAM] LoginSessionSeam.onAccountAlreadyOnline — spare the existing
+			// session (skip the kick+reject) so a player can re-login while their autotrader
+			// persists. PLACEMENT: the login dup-gate, before the kick. Pairs with the
+			// char-server CharSessionSeam. Default false => vanilla kick+reject.
+			sathena_login_spare = login_session_seam()->onAccountAlreadyOnline( sd->account_id, data->char_server );
+#endif
+			if( !sathena_login_spare && data->char_server > -1 )
 			{// Request char servers to kick this account out. [Skotlex]
 				uint8 buf[6];
 				ShowNotice("User '%s' is already online - Rejected.\n", sd->userid);
@@ -97,8 +110,9 @@ static void logclif_auth_ok(struct login_session_data* sd) {
 				logclif_sent_auth_result(fd,8); // 08 = Server still recognizes your last login
 				return;
 			}
+			// spared consumers fall through to normal auth (they own the coexist ledger)
 			else
-			if( data->char_server == -1 )
+			if( !sathena_login_spare && data->char_server == -1 )
 			{// client has authed but did not access char-server yet
 				// wipe previous session
 				login_remove_auth_node(sd->account_id);
