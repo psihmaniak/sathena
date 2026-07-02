@@ -31,7 +31,7 @@
 
 #ifdef SATHENA
 // [SATHENA-SEAM] BootSeam interface — consumed by the onServerBoot hook in Core::start below.
-#include <custom/seam_boot.hpp>
+#include <custom/seam_content.hpp>
 #endif
 
 #ifndef DEPRECATED_COMPILER_SUPPORT
@@ -392,7 +392,7 @@ int32 Core::start( int32 argc, char **argv ){
 		// the subclass' initialize() succeeded and status became SERVER_INITIALIZED — all
 		// DBs/scripts/config are loaded, nothing is being served yet. If upstream refactors
 		// Core::start, re-attach right after the successful-initialize status transition.
-		boot_seam()->onServerBoot( this->m_type );
+		content_seam()->onServerBoot( this->m_type );
 #endif
 
 		this->set_status( e_core_status::RUNNING );

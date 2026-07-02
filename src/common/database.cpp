@@ -10,6 +10,11 @@
 #include "showmsg.hpp"
 #include "utilities.hpp"
 
+#ifdef SATHENA
+// [SATHENA-SEAM] BootSeam interface — consumed by the onDatabaseLoad hook in load() below.
+#include <custom/seam_content.hpp>
+#endif
+
 using namespace rathena;
 
 bool YamlDatabase::nodeExists( const ryml::NodeRef& node, const std::string& name ){
@@ -77,6 +82,16 @@ bool YamlDatabase::verifyCompatibility( const ryml::Tree& tree ){
 
 bool YamlDatabase::load(){
 	bool ret = this->load( this->getDefaultLocation() );
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] BootSeam.onDatabaseLoad — the content-load extension point: fires in the
+	// shared no-arg load() every YAML DB dispatcher (and reload()) goes through, AFTER the
+	// default location loaded and BEFORE loadingFinished(), so consumer-merged files land
+	// last (their entries win field-by-field) and cross-referencing still runs exactly once.
+	// Consumers merge via loadExtra(). If upstream restructures, keep this between the
+	// default-location load and loadingFinished().
+	content_seam()->onDatabaseLoad( this->type, *this );
+#endif
 
 	this->loadingFinished();
 

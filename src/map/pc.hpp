@@ -35,12 +35,21 @@ enum sc_type : int16;
 
 class MapGuild;
 
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_PC_BONUS
 #define MAX_PC_BONUS 50 /// Max bonus, usually used by item bonus
+#endif
 #define MAX_PC_FEELHATE 3 /// Max feel hate info
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_SPIRITBALL
 #define MAX_SPIRITBALL 15 /// Max spirit balls
+#endif
 #define MAX_DEVOTION 5 /// Max Devotion slots
 #define MAX_SPIRITCHARM 10 /// Max spirit charms
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_SOUL_BALL
 #define MAX_SOUL_BALL 20 /// Max soul ball
+#endif
 #define MAX_STELLAR_MARKS 5 /// Max stellar marks
 #define MAX_UNITED_SOULS 12 /// Max united souls
 #define MAX_SERVANTBALL 5 /// Max servant weapons

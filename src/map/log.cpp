@@ -5,6 +5,11 @@
 
 #include <cstdlib>
 
+#ifdef SATHENA
+// [SATHENA-SEAM] ContentSeam interface — consumed by the onLogNpc/onLogNpcData hooks at the top of log_npc.
+#include <custom/seam_content.hpp>
+#endif
+
 #include <common/cbasetypes.hpp>
 #include <common/nullpo.hpp>
 #include <common/showmsg.hpp>
@@ -378,6 +383,11 @@ void log_atcommand( map_session_data* sd, const char* message )
 void log_npc( npc_data* nd, const char* message ){
 	nullpo_retv(nd);
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogNpcData — tap before the config gate.
+	content_seam()->onLogNpcData( *nd, message );
+#endif
+
 	if( !log_config.npc )
 		return;
 
@@ -413,6 +423,11 @@ void log_npc( npc_data* nd, const char* message ){
 void log_npc( map_session_data* sd, const char* message )
 {
 	nullpo_retv(sd);
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogNpc — tap before the config gate.
+	content_seam()->onLogNpc( *sd, message );
+#endif
 
 	if( !log_config.npc )
 		return;
