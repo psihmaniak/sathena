@@ -3,6 +3,12 @@
 
 #include "status.hpp"
 
+#ifdef SATHENA
+// [SATHENA-SEAM] StatusSeam interface — consumed by onStatusStart (end of status_change_start)
+// and the onStatusEnd veto (in status_change_end).
+#include <custom/seam_status.hpp>
+#endif
+
 #include <cmath>
 #include <cstdlib>
 #include <functional>
@@ -13353,6 +13359,14 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 	if( opt_flag[SCF_ONTOUCH] && sd && !sd->npc_ontouch_.empty() )
 		npc_touchnext_areanpc(sd,false); // Run OnTouch_ on next char in range
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] StatusSeam.onStatusStart — an SC has been committed. PLACEMENT: the
+	// success tail of status_change_start_post_delay (where the sce is created, all
+	// early-outs/resists passed), so a consumer reacts to a live SC: ensemble mutex,
+	// on-inflict mirror, umbrella-immunity. `tick` is the applied duration.
+	status_seam()->onStatusStart( bl, type, val1, tick );
+#endif
+
 	return true;
 }
 
@@ -13449,6 +13463,15 @@ int32 status_change_end( block_list* bl, enum sc_type type, int32 tid ){
 	if( status_change_entry* sce = sc->getSCE( type ); sce != nullptr ){
 		if (sce->timer != tid && tid != INVALID_TIMER)
 			return 0;
+
+#ifdef SATHENA
+		// [SATHENA-SEAM] StatusSeam.onStatusEnd — veto removal (return false) for dispel/death
+		// policy (NoDispel / NoRemoveOnDead). PLACEMENT: after the stale-timer guard, before
+		// removal. `forced` = tid == INVALID_TIMER (dispel/death/manual) vs a natural timer
+		// expiry, so a consumer scopes its veto to forced ends and never freezes a timer.
+		if( !status_seam()->onStatusEnd( bl, type, tid == INVALID_TIMER ) )
+			return 0;
+#endif
 
 		if (tid == INVALID_TIMER) {
 			if (type == SC_ENDURE && sce->val4)
