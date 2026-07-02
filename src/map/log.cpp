@@ -5,6 +5,11 @@
 
 #include <cstdlib>
 
+#ifdef SATHENA
+// [SATHENA-SEAM] LogSeam interface — consumed by the onLog* hooks at the top of log_*.
+#include <custom/seam_log.hpp>
+#endif
+
 #include <common/cbasetypes.hpp>
 #include <common/nullpo.hpp>
 #include <common/showmsg.hpp>
@@ -207,6 +212,14 @@ void log_branch( map_session_data* sd )
 void log_pick( int32 id, int16 m, e_log_pick_type type, int32 amount, const item* itm )
 {
 	nullpo_retv(itm);
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogPick — tap item flow BEFORE the enable_logs gate, so the
+	// consumer funnels every pick/drop/trade (with the item unique_id) regardless of the
+	// vanilla sink config. PLACEMENT: after nullpo, before the enable_logs early-return.
+	log_seam()->onLogPick( id, m, type, amount, itm );
+#endif
+
 	if( ( log_config.enable_logs&type ) == 0 )
 	{// disabled
 		return;
@@ -276,6 +289,11 @@ void log_pick_mob( const mob_data* md, e_log_pick_type type, int32 amount, const
 // ids are char_ids
 void log_zeny( const map_session_data &target_sd, e_log_pick_type type, uint32 src_id, int32 amount )
 {
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogZeny — tap zeny flow BEFORE the config gate.
+	log_seam()->onLogZeny( target_sd, type, src_id, amount );
+#endif
+
 	if( !log_config.zeny || ( log_config.zeny != 1 && abs(amount) < log_config.zeny ) )
 		return;
 
