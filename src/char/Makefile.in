@@ -14,6 +14,16 @@ COMMON_H = ../common/sql.hpp
 
 CHAR_OBJ = $(shell ls *.cpp | sed -e "s/\.cpp/\.o/g")
 CHAR_DIR_OBJ = $(CHAR_OBJ:%=obj/%)
+
+# SATHENA: external consumer sources — a consumer build passes CUSTOM_SRC_DIR=<abs dir> (+
+# optional CUSTOM_DEFINES). <dir>/common and <dir>/char *.cpp are compiled and linked
+# DIRECTLY into this binary (direct objects, NOT into common.a — archives dead-strip
+# self-registering seam consumers), and -I<dir> is placed FIRST so the consumer's custom/
+# shadows the src/custom stubs. Empty default = pure vanilla build.
+CUSTOM_INCLUDE = $(if $(CUSTOM_SRC_DIR),-I$(CUSTOM_SRC_DIR))
+CUSTOM_SRC = $(if $(CUSTOM_SRC_DIR),$(wildcard $(CUSTOM_SRC_DIR)/common/*.cpp) $(wildcard $(CUSTOM_SRC_DIR)/char/*.cpp))
+CUSTOM_DIR_OBJ = $(patsubst $(CUSTOM_SRC_DIR)/%.cpp,obj/custom/%.o,$(CUSTOM_SRC))
+
 CHAR_H = $(shell ls ../char/*.hpp)
 
 RAPIDYAML_OBJ = $(shell find ../../3rdparty/rapidyaml/ -type f -name "*.cpp" | sed -e "s/\.cpp/\.o/g" )
@@ -53,9 +63,9 @@ help:
 #####################################################################
 
 
-char-server: obj $(CHAR_DIR_OBJ) $(LIBCONFIG_AR) $(COMMON_AR) $(RAPIDYAML_AR)
+char-server: obj $(CHAR_DIR_OBJ) $(CUSTOM_DIR_OBJ) $(LIBCONFIG_AR) $(COMMON_AR) $(RAPIDYAML_AR)
 	@echo "	LD	@OCHR@@EXEEXT@"
-	@@CXX@ @LDFLAGS@ -o ../../@OCHR@@EXEEXT@ $(CHAR_DIR_OBJ) $(LIBCONFIG_AR) $(COMMON_AR) $(LIBCONFIG_OBJ) $(RAPIDYAML_AR) @LIBS@ @MYSQL_LIBS@
+	@@CXX@ @LDFLAGS@ -o ../../@OCHR@@EXEEXT@ $(CHAR_DIR_OBJ) $(CUSTOM_DIR_OBJ) $(LIBCONFIG_AR) $(COMMON_AR) $(LIBCONFIG_OBJ) $(RAPIDYAML_AR) @LIBS@ @MYSQL_LIBS@
 
 needs_mysql:
 	@echo "MySQL not found or disabled by the configure script"
@@ -67,7 +77,13 @@ obj:
 	
 obj/%.o: %.cpp $(CHAR_H) $(COMMON_H) $(LIBCONFIG_H) $(RAPIDYAML_H)
 	@echo "	CXX	$<"
-	@@CXX@ @CXXFLAGS@ $(COMMON_INCLUDE) $(RA_INCLUDE) $(LIBCONFIG_INCLUDE) $(RAPIDYAML_INCLUDE) @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
+	@@CXX@ @CXXFLAGS@ $(CUSTOM_INCLUDE) $(CUSTOM_DEFINES) $(COMMON_INCLUDE) $(RA_INCLUDE) $(LIBCONFIG_INCLUDE) $(RAPIDYAML_INCLUDE) @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
+
+# SATHENA: compile rule for external consumer sources (see CUSTOM_SRC_DIR above)
+obj/custom/%.o: $(CUSTOM_SRC_DIR)/%.cpp $(COMMON_H)
+	@echo "	CXX	$<"
+	@-mkdir -p $(dir $@)
+	@@CXX@ @CXXFLAGS@ $(CUSTOM_INCLUDE) $(CUSTOM_DEFINES) $(COMMON_INCLUDE) $(RA_INCLUDE) $(LIBCONFIG_INCLUDE) $(RAPIDYAML_INCLUDE) @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
 
 # missing object files
 $(COMMON_AR):

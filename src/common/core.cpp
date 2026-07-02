@@ -29,6 +29,11 @@
 #include "showmsg.hpp"
 #include "strlib.hpp"
 
+#ifdef SATHENA
+// [SATHENA-SEAM] BootSeam interface — consumed by the onServerBoot hook in Core::start below.
+#include <custom/seam_boot.hpp>
+#endif
+
 #ifndef DEPRECATED_COMPILER_SUPPORT
 	#if defined( _MSC_VER ) && _MSC_VER < 1914
 		#error "Visual Studio versions older than Visual Studio 2017 are not officially supported anymore"
@@ -380,6 +385,15 @@ int32 Core::start( int32 argc, char **argv ){
 	// If initialization did not trigger shutdown
 	if( this->m_status != e_core_status::STOPPING ){
 		this->set_status( e_core_status::SERVER_INITIALIZED );
+
+#ifdef SATHENA
+		// [SATHENA-SEAM] BootSeam.onServerBoot — the ONE shared post-init hook for every
+		// server type (login/char/map/tool/web). PLACEMENT: Core::start(), immediately after
+		// the subclass' initialize() succeeded and status became SERVER_INITIALIZED — all
+		// DBs/scripts/config are loaded, nothing is being served yet. If upstream refactors
+		// Core::start, re-attach right after the successful-initialize status transition.
+		boot_seam()->onServerBoot( this->m_type );
+#endif
 
 		this->set_status( e_core_status::RUNNING );
 #ifndef MINICORE

@@ -88,7 +88,11 @@ Thumbs.db
 /src/common/version.hpp
 
 # /src/custom/
-/src/custom
+# SATHENA: upstream ignores the whole dir (user-local files); the seam INTERFACES are part
+# of this repo, so ignore contents but re-include seam_*.hpp (a dir-level ignore can't be
+# pierced by negation, hence the /* form).
+/src/custom/*
+!/src/custom/seam_*.hpp
 
 # /src/login/
 /src/login/Makefile

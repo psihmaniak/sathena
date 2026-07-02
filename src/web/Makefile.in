@@ -26,6 +26,16 @@ NLOHMANN_INCLUDE = -I../../3rdparty/json/include
 
 WEB_OBJ = $(shell ls *.cpp | sed -e "s/\.cpp/\.o/g")
 WEB_DIR_OBJ = $(WEB_OBJ:%=obj/%)
+
+# SATHENA: external consumer sources — a consumer build passes CUSTOM_SRC_DIR=<abs dir> (+
+# optional CUSTOM_DEFINES). <dir>/common and <dir>/web *.cpp are compiled and linked
+# DIRECTLY into this binary (direct objects, NOT into common.a — archives dead-strip
+# self-registering seam consumers), and -I<dir> is placed FIRST so the consumer's custom/
+# shadows the src/custom stubs. Empty default = pure vanilla build.
+CUSTOM_INCLUDE = $(if $(CUSTOM_SRC_DIR),-I$(CUSTOM_SRC_DIR))
+CUSTOM_SRC = $(if $(CUSTOM_SRC_DIR),$(wildcard $(CUSTOM_SRC_DIR)/common/*.cpp) $(wildcard $(CUSTOM_SRC_DIR)/web/*.cpp))
+CUSTOM_DIR_OBJ = $(patsubst $(CUSTOM_SRC_DIR)/%.cpp,obj/custom/%.o,$(CUSTOM_SRC))
+
 WEB_H = $(shell ls *.hpp)
 
 
@@ -74,15 +84,21 @@ obj:
 
 #executables
 
-web-server: obj $(WEB_DIR_OBJ) $(COMMON_AR) $(LIBCONFIG_AR) $(RAPIDYAML_AR) $(HTTPLIB_AR)
+web-server: obj $(WEB_DIR_OBJ) $(CUSTOM_DIR_OBJ) $(COMMON_AR) $(LIBCONFIG_AR) $(RAPIDYAML_AR) $(HTTPLIB_AR)
 	@echo "	LD	@OWEB@@EXEEXT@"
-	@@CXX@ @LDFLAGS@ -o ../../@OWEB@@EXEEXT@ $(WEB_DIR_OBJ) $(COMMON_AR) $(LIBCONFIG_AR) $(RAPIDYAML_AR) $(HTTPLIB_AR) @LIBS@ @MYSQL_LIBS@
+	@@CXX@ @LDFLAGS@ -o ../../@OWEB@@EXEEXT@ $(WEB_DIR_OBJ) $(CUSTOM_DIR_OBJ) $(COMMON_AR) $(LIBCONFIG_AR) $(RAPIDYAML_AR) $(HTTPLIB_AR) @LIBS@ @MYSQL_LIBS@
 
 # web object files
 
 obj/%.o: %.cpp $(WEB_H) $(COMMON_H) $(LIBCONFIG_H) $(HTTPLIB_H) $(RAPIDYAML_H) $(NLOHMANN_H)
 	@echo "	CXX	$<"
-	@@CXX@ @CXXFLAGS@ $(COMMON_INCLUDE) $(RA_INCLUDE) $(LIBCONFIG_INCLUDE) $(HTTPLIB_INCLUDE) $(RAPIDYAML_INCLUDE) $(NLOHMANN_INCLUDE) @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
+	@@CXX@ @CXXFLAGS@ $(CUSTOM_INCLUDE) $(CUSTOM_DEFINES) $(COMMON_INCLUDE) $(RA_INCLUDE) $(LIBCONFIG_INCLUDE) $(HTTPLIB_INCLUDE) $(RAPIDYAML_INCLUDE) $(NLOHMANN_INCLUDE) @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
+
+# SATHENA: compile rule for external consumer sources (see CUSTOM_SRC_DIR above)
+obj/custom/%.o: $(CUSTOM_SRC_DIR)/%.cpp $(COMMON_H)
+	@echo "	CXX	$<"
+	@-mkdir -p $(dir $@)
+	@@CXX@ @CXXFLAGS@ $(CUSTOM_INCLUDE) $(CUSTOM_DEFINES) $(COMMON_INCLUDE) $(RA_INCLUDE) $(LIBCONFIG_INCLUDE) $(HTTPLIB_INCLUDE) $(RAPIDYAML_INCLUDE) $(NLOHMANN_INCLUDE) @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
 
 # missing object files
 $(COMMON_AR):

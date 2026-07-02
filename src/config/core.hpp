@@ -11,6 +11,14 @@
 
 #include <custom/defines_pre.hpp>
 
+#ifndef SATHENA_OFF
+// SATHENA: master switch for the seam layer (interfaces in src/custom/seam_*.hpp).
+// Defined by default; build with -DSATHENA_OFF (or define it in custom/defines_pre.hpp)
+// to compile literally-vanilla — every seam call-site compiles out.
+// PLACEMENT: right after defines_pre.hpp so a consumer's defines_pre can veto it.
+#define SATHENA
+#endif
+
 /// Max number of items on @autolootid list
 #define AUTOLOOTITEM_SIZE 10
 
