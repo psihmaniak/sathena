@@ -3,6 +3,13 @@
 
 #include "pc.hpp"
 
+#ifdef SATHENA
+// [SATHENA-SEAM] BonusSeam interface — consumed by the custom-bonus dispatch in the
+// pc_bonusN default arms below.
+#include <custom/seam_bonus.hpp>
+#endif
+
+
 #include <cmath>
 #include <cstdlib>
 #include <map>
@@ -4474,6 +4481,14 @@ void pc_bonus(map_session_data *sd,int32 type,int32 val)
 				sd->bonus.itemsphealrate2 += val;
 			break;
 		default:
+#ifdef SATHENA
+			// [SATHENA-SEAM] custom-bonus dispatch — bonus ids unknown to vanilla route to
+			// the consumer (true = consumed). PLACEMENT: the default: arm of pc_bonus's
+			// switch(type) — the single fall-through for unrecognized ids; if upstream
+			// splits the switch, re-attach to whichever keeps the unknown-type default.
+			if( bonus_seam()->onBonus( sd, type, val ) )
+				break;
+#endif
 			if (current_equip_combo_pos > 0) {
 				ShowWarning("pc_bonus: unknown bonus type %d %d in a combo with item #%u\n", type, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
 			}
@@ -5140,6 +5155,14 @@ void pc_bonus2(map_session_data *sd,int32 type,int32 type2,int32 val)
 		pc_bonus_itembonus( sd->itemgroupsphealrate, type2, val, false );
 		break;
 	default:
+#ifdef SATHENA
+			// [SATHENA-SEAM] custom-bonus dispatch — bonus ids unknown to vanilla route to
+			// the consumer (true = consumed). PLACEMENT: the default: arm of pc_bonus2's
+			// switch(type) — the single fall-through for unrecognized ids; if upstream
+			// splits the switch, re-attach to whichever keeps the unknown-type default.
+			if( bonus_seam()->onBonus2( sd, type, type2, val ) )
+				break;
+#endif
 		if (current_equip_combo_pos > 0) {
 			ShowWarning("pc_bonus2: unknown bonus type %d %d %d in a combo with item #%u\n", type, type2, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
 		} 
@@ -5280,6 +5303,14 @@ void pc_bonus3(map_session_data *sd,int32 type,int32 type2,int32 type3,int32 val
 		sd->norecover_state_race[type2].tick = val;
 		break;
 	default:
+#ifdef SATHENA
+			// [SATHENA-SEAM] custom-bonus dispatch — bonus ids unknown to vanilla route to
+			// the consumer (true = consumed). PLACEMENT: the default: arm of pc_bonus3's
+			// switch(type) — the single fall-through for unrecognized ids; if upstream
+			// splits the switch, re-attach to whichever keeps the unknown-type default.
+			if( bonus_seam()->onBonus3( sd, type, type2, type3, val ) )
+				break;
+#endif
 		if (current_equip_combo_pos > 0) {
 			ShowWarning("pc_bonus3: unknown bonus type %d %d %d %d in a combo with item #%u\n", type, type2, type3, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
 		}
@@ -5363,6 +5394,14 @@ void pc_bonus4(map_session_data *sd,int32 type,int32 type2,int32 type3,int32 typ
 		break;
 
 	default:
+#ifdef SATHENA
+			// [SATHENA-SEAM] custom-bonus dispatch — bonus ids unknown to vanilla route to
+			// the consumer (true = consumed). PLACEMENT: the default: arm of pc_bonus4's
+			// switch(type) — the single fall-through for unrecognized ids; if upstream
+			// splits the switch, re-attach to whichever keeps the unknown-type default.
+			if( bonus_seam()->onBonus4( sd, type, type2, type3, type4, val ) )
+				break;
+#endif
 		if (current_equip_combo_pos > 0) {
 			ShowWarning("pc_bonus4: unknown bonus type %d %d %d %d %d in a combo with item #%u\n", type, type2, type3, type4, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
 		}
@@ -5412,6 +5451,14 @@ void pc_bonus5(map_session_data *sd,int32 type,int32 type2,int32 type3,int32 typ
 		break;
 
 	default:
+#ifdef SATHENA
+			// [SATHENA-SEAM] custom-bonus dispatch — bonus ids unknown to vanilla route to
+			// the consumer (true = consumed). PLACEMENT: the default: arm of pc_bonus5's
+			// switch(type) — the single fall-through for unrecognized ids; if upstream
+			// splits the switch, re-attach to whichever keeps the unknown-type default.
+			if( bonus_seam()->onBonus5( sd, type, type2, type3, type4, type5, val ) )
+				break;
+#endif
 		if (current_equip_combo_pos > 0) {
 			ShowWarning("pc_bonus5: unknown bonus type %d %d %d %d %d %d in a combo with item #%u\n", type, type2, type3, type4, type5, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
 		}
