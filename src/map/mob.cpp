@@ -7,6 +7,8 @@
 #include <custom/seam_event.hpp>
 // [SATHENA-SEAM] DropSeam interface — consumed by the onDropRate hook in mob_getdroprate.
 #include <custom/seam_drop.hpp>
+// [SATHENA-SEAM] MobAISeam interface — consumed by the onAiTick hook in mob_ai_sub_hard.
+#include <custom/seam_mobai.hpp>
 #endif
 
 #include <algorithm>
@@ -1871,6 +1873,15 @@ static bool mob_ai_sub_hard(mob_data *md, t_tick tick)
 		md->target_id = md->attacked_id = md->norm_attacked_id = 0;
 		return false;
 	}
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] MobAISeam.onAiTick — per-mob AI override. PLACEMENT: after the vanilla
+	// "skip thinking" early-outs (alive/thinktime/stun) and BEFORE the skill+target cascade,
+	// so a consumer's threat/positional AI replaces this tick (return true) or falls through
+	// to vanilla (false). Opt-in keyed in the consumer (mob_id/side-table), no struct field.
+	if( mob_ai_seam()->onAiTick( md, tick ) )
+		return true;
+#endif
 
 	// Before a monster processes its AI, it will check for a skill
 	// It it uses a skill it will not process its AI further until the next interval
