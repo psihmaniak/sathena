@@ -10,6 +10,8 @@
 // [SATHENA-SEAM] DamageSeam interface — consumed by the staged damage hooks (FINAL choke
 // wired in battle_calc_damage; earlier stage boundaries added as needed).
 #include <custom/seam_damage.hpp>
+// [SATHENA-SEAM] CombatRuleSeam interface — consumed by the onCheckTarget hook.
+#include <custom/seam_combatrule.hpp>
 #endif
 
 #include <common/cbasetypes.hpp>
@@ -7891,6 +7893,18 @@ int32 battle_check_target( const block_list* src, const block_list* target, int3
 
 	nullpo_ret(src);
 	nullpo_ret(target);
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] CombatRuleSeam.onCheckTarget — override the can-attack decision.
+	// PLACEMENT: top of battle_check_target after the nullpo guards, before any vanilla
+	// state logic; a true return short-circuits with the consumer's verdict (contracts,
+	// custom PVP rules, area/faction gates), false = vanilla. Single choke for all callers.
+	{
+		int32 sathena_out = 0;
+		if( combat_rule_seam()->onCheckTarget( src, target, flag, sathena_out ) )
+			return sathena_out;
+	}
+#endif
 
 	ud = unit_bl2ud(target);
 	m = target->m;
