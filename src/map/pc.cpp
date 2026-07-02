@@ -9,6 +9,8 @@
 #include <custom/seam_bonus.hpp>
 // [SATHENA-SEAM] EconomySeam interface — consumed by the onZenyChange hooks in pc_pay/getzeny.
 #include <custom/seam_economy.hpp>
+// [SATHENA-SEAM] ResourceSeam interface — consumed by the onItemHeal hook in pc_itemheal.
+#include <custom/seam_resource.hpp>
 #endif
 
 
@@ -10843,6 +10845,13 @@ int32 pc_itemheal(map_session_data *sd, t_itemid itemid, int32 hp, int32 sp)
 		if (sd->sc.getSCE(SC_BITESCAR))
 			hp = 0;
 	}
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] ResourceSeam.onItemHeal — final HP/SP heal adjustment. PLACEMENT: end of
+	// pc_itemheal, after every vanilla heal-rate bonus, before status_heal applies it; hp/sp
+	// are mutable (item-heal-% from a custom SC, HP<->SP convert, consumable rework).
+	resource_seam()->onItemHeal( sd, itemid, hp, sp );
+#endif
 
 	return status_heal(sd, hp, sp, 1);
 }
