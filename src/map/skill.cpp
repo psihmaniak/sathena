@@ -5,6 +5,11 @@
 
 #include <array>
 #include <cmath>
+
+#ifdef SATHENA
+// [SATHENA-SEAM] EventSeam interface — consumed by the onSkillUse hooks in the castend fns.
+#include <custom/seam_event.hpp>
+#endif
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -4192,6 +4197,13 @@ int32 skill_castend_damage_id (block_list* src, block_list *bl, uint16 skill_id,
 	if (bl->prev == nullptr)
 		return 1;
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] EventSeam.onSkillUse — a damage skill is landing on bl. PLACEMENT: after
+	// the entry validity guards (src/bl valid + same map + on-map), before the skill switch,
+	// so the consumer observes every applied damage-skill with caster+target live.
+	event_seam()->onSkillUse( src, bl, skill_id, skill_lv );
+#endif
+
 	sd = BL_CAST(BL_PC, src);
 
 	if (status_isdead(*bl))
@@ -4382,6 +4394,12 @@ int32 skill_castend_nodamage_id (block_list *src, block_list *bl, uint16 skill_i
 
 	if (src->m != bl->m)
 		return 1;
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] EventSeam.onSkillUse — a no-damage skill is landing on bl. PLACEMENT:
+	// mirrors the damage_id hook — after the same-map guard, before the skill switch.
+	event_seam()->onSkillUse( src, bl, skill_id, skill_lv );
+#endif
 
 	sd = BL_CAST(BL_PC, src);
 	hd = BL_CAST(BL_HOM, src);

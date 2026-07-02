@@ -21,6 +21,10 @@ struct EventSeam{
 	// consumer can grant/emit with the killer identified.
 	virtual void onMobDead( mob_data* md, block_list* src, int32 type ){}
 
+	// A skill landed on a target — fired from the castend dispatch (damage + no-damage), so
+	// once per (caster, target) application. For AoE this fires per affected target.
+	virtual void onSkillUse( block_list* src, block_list* target, uint16 skill_id, uint16 skill_lv ){}
+
 	virtual ~EventSeam() = default;
 };
 
