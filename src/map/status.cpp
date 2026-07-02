@@ -9,6 +9,8 @@
 #include <custom/seam_status.hpp>
 // [SATHENA-SEAM] CombatOutcomeSeam interface — consumed by the onDamageTaken hook in status_damage.
 #include <custom/seam_combat_outcome.hpp>
+// [SATHENA-SEAM] RegenSeam interface — consumed by the onRegenTick hook in status_natural_heal.
+#include <custom/seam_regen.hpp>
 #endif
 
 #include <cmath>
@@ -15498,6 +15500,13 @@ static int32 status_natural_heal(block_list* bl, va_list args)
 	regen = status_get_regen_data(bl);
 	if (!regen)
 		return 0;
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] RegenSeam.onRegenTick — rework regen amounts/rates per tick. PLACEMENT:
+	// after the regen_data is fetched, BEFORE its flag/rates are read below, so a consumer's
+	// edits to regen->flag / regen->rate take effect this tick. Intervals are conf, not here.
+	regen_seam()->onRegenTick( bl, regen );
+#endif
 
 	status_data* status = status_get_status_data(*bl);
 
