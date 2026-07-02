@@ -45,6 +45,10 @@
 #include "mob.hpp"
 #include "navi.hpp"
 #include "npc.hpp"
+#ifdef SATHENA
+// [SATHENA-SEAM] NpcSeam interface — consumed by the onRegisterScripts hook in do_init.
+#include <custom/seam_npc.hpp>
+#endif
 #include "party.hpp"
 #include "path.hpp"
 #include "pc.hpp"
@@ -5361,6 +5365,15 @@ bool MapServer::initialize( int32 argc, char *argv[] ){
 
 	// loads npcs
 	map_reloadnpc(false);
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] NpcSeam.onRegisterScripts — register consumer scripts on top of the
+	// vanilla file list. PLACEMENT: after map_reloadnpc() built npc_src_files (the
+	// scripts_main.conf chain) and BEFORE do_init_npc() parses them, so consumer
+	// npc_addsrcfile()/npc_delsrcfile() calls land in the same parse pass. If upstream
+	// moves the list-build vs parse boundary, keep this strictly between them.
+	npc_seam()->onRegisterScripts();
+#endif
 
 	chrif_checkdefaultlogin();
 
