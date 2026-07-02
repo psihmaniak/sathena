@@ -7,6 +7,8 @@
 // [SATHENA-SEAM] BonusSeam interface — consumed by the custom-bonus dispatch in the
 // pc_bonusN default arms below.
 #include <custom/seam_bonus.hpp>
+// [SATHENA-SEAM] EconomySeam interface — consumed by the onZenyChange hooks in pc_pay/getzeny.
+#include <custom/seam_economy.hpp>
 #endif
 
 
@@ -5856,6 +5858,13 @@ char pc_payzeny(map_session_data *sd, int32 zeny, enum e_log_pick_type type, uin
 	sd->status.zeny -= zeny;
 	clif_updatestatus(*sd,SP_ZENY);
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] EconomySeam.onZenyChange — a zeny outflow just applied. PLACEMENT: after
+	// the balance is debited, delta is the negative applied amount; consumer takes the
+	// castle/guild cut into a server-side fund store (in-engine, no bus).
+	economy_seam()->onZenyChange( sd, -zeny, type );
+#endif
+
 	log_zeny(*sd, type, log_charid, -zeny);
 	if( zeny > 0 && sd->state.showzeny ) {
 		char output[255];
@@ -5889,6 +5898,12 @@ char pc_getzeny(map_session_data *sd, int32 zeny, enum e_log_pick_type type, uin
 
 	sd->status.zeny += zeny;
 	clif_updatestatus(*sd,SP_ZENY);
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] EconomySeam.onZenyChange — a zeny inflow just applied (post-cap). PLACEMENT:
+	// after the balance is credited; delta is the positive applied amount.
+	economy_seam()->onZenyChange( sd, zeny, type );
+#endif
 
 	log_zeny(*sd, type, log_charid, zeny);
 	if( zeny > 0 && sd->state.showzeny ) {
