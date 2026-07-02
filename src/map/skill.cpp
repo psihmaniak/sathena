@@ -9,6 +9,8 @@
 #ifdef SATHENA
 // [SATHENA-SEAM] EventSeam interface — consumed by the onSkillUse hooks in the castend fns.
 #include <custom/seam_event.hpp>
+// [SATHENA-SEAM] FormulaSeam interface — consumed by onCastTime (skill_vfcastfix) and onSkillDelay (skill_delayfix).
+#include <custom/seam_formula.hpp>
 #endif
 #include <cstdio>
 #include <cstdlib>
@@ -10396,7 +10398,15 @@ int32 skill_vfcastfix(block_list *bl, double time, uint16 skill_id, uint16 skill
 	time = time * (1 - (float)min(reduce_cast_rate, 100) / 100);
 	time = max((int32)time, 0) + (1 - (float)min(fixcast_r, 100) / 100) * max(fixed, 0); //Underflow checking/capping
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] FormulaSeam.onCastTime — the computed cast time. PLACEMENT: the return of
+	// skill_vfcastfix, result captured and passed by reference to be mutated before it is returned.
+	int32 cast_time = (int32)time;
+	formula_seam()->onCastTime( bl, cast_time, skill_id, skill_lv );
+	return cast_time;
+#else
 	return (int32)time;
+#endif
 }
 #endif
 
@@ -10511,7 +10521,15 @@ int32 skill_delayfix(block_list *bl, uint16 skill_id, uint16 skill_lv)
 
 	//ShowInfo("Delay delayfix = %f\n",time);
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] FormulaSeam.onSkillDelay — the computed after-cast delay. PLACEMENT: the
+	// return of skill_delayfix, result captured and passed by reference to be mutated before return.
+	int32 delay_final = max((int32)time,0);
+	formula_seam()->onSkillDelay( bl, delay_final, skill_id, skill_lv );
+	return delay_final;
+#else
 	return max((int32)time,0);
+#endif
 }
 
 

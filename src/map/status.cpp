@@ -11,6 +11,8 @@
 #include <custom/seam_combat_outcome.hpp>
 // [SATHENA-SEAM] RegenSeam interface — consumed by the onRegenTick hook in status_natural_heal.
 #include <custom/seam_regen.hpp>
+// [SATHENA-SEAM] FormulaSeam interface — consumed by the onStatusCalc hook at the tail of status_calc_bl_main.
+#include <custom/seam_formula.hpp>
 #endif
 
 #include <cmath>
@@ -6529,6 +6531,12 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 
 	if(flag[SCB_REGEN] && bl.type & BL_REGEN)
 		status_calc_regen_rate(&bl, status_get_regen_data(&bl), sc);
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] FormulaSeam.onStatusCalc — every stat field recomputed. PLACEMENT: the tail
+	// of status_calc_bl_main, after the regen recalcs and before return, bl passed by reference.
+	formula_seam()->onStatusCalc( bl );
+#endif
 }
 
 /**
