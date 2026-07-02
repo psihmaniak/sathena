@@ -2,6 +2,10 @@
 // For more information, see LICENCE in the main folder
 
 #include "mob.hpp"
+#ifdef SATHENA
+// [SATHENA-SEAM] EventSeam interface — consumed by the onMobDead hook in mob_dead.
+#include <custom/seam_event.hpp>
+#endif
 
 #include <algorithm>
 #include <cmath>
@@ -2949,6 +2953,14 @@ int32 mob_dead(mob_data *md, block_list *src, int32 type)
 	bool rebirth, homkillonly, merckillonly;
 
 	status = &md->status;
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] EventSeam.onMobDead — the kill choke. PLACEMENT: top of mob_dead (the
+	// death handler; no death-aborting early return precedes this), after locals are set and
+	// BEFORE the dead-skill / exp / drop processing, so a consumer sees every kill with the
+	// killer(src) identified and can act before rewards are distributed.
+	event_seam()->onMobDead( md, src, type );
+#endif
 
 	if( src && src->type == BL_PC ) {
 		sd = (map_session_data *)src;
