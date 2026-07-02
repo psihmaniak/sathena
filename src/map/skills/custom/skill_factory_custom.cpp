@@ -5,9 +5,22 @@
 
 #include "../swordman/bash.hpp"
 
+#ifdef SATHENA
+// [SATHENA-SEAM] SkillSeam — delegate the custom-skill slot to the consumer. PLACEMENT:
+// SkillFactoryCustom is already the first factory tried ("always first to allow
+// overwriting skills"), so consulting the seam here overrides/adds any skill without
+// editing the factory list. A non-null result wins; nullptr falls through to vanilla.
+#include <custom/seam_skill.hpp>
+#endif
+
 class SkillCustomBash;
 
 std::unique_ptr<const SkillImpl> SkillFactoryCustom::create(const e_skill skill_id) const {
+#ifdef SATHENA
+	if( std::unique_ptr<const SkillImpl> impl = skill_seam()->create( skill_id ); impl != nullptr ){
+		return impl;
+	}
+#endif
 #if 0
 	switch( skill_id ){
 		case SM_BASH:
