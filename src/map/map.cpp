@@ -48,6 +48,8 @@
 #ifdef SATHENA
 // [SATHENA-SEAM] NpcSeam interface — consumed by the onRegisterScripts hook in do_init.
 #include <custom/seam_npc.hpp>
+// [SATHENA-SEAM] MapShardSeam interface — consumed by the keepMap hook in map_addmap.
+#include <custom/seam_mapshard.hpp>
 #endif
 #include "party.hpp"
 #include "path.hpp"
@@ -3728,6 +3730,14 @@ int32 map_addmap(char* mapname)
 		instance_start = 0;
 		return 0;
 	}
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] MapShardSeam.keepMap — drop maps not assigned to this shard instance.
+	// PLACEMENT: top of map_addmap (after "clear"), before the map is registered, so a
+	// dropped map never enters the list / loads its cache. Default keeps all.
+	if( !map_shard_seam()->keepMap( mapname ) )
+		return 0;
+#endif
 
 	if (map_num >= MAX_MAP_PER_SERVER - 1) {
 		ShowError("Could not add map '" CL_WHITE "%s" CL_RESET "', the limit of maps has been reached.\n", mapname);
