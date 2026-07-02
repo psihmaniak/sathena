@@ -75,6 +75,15 @@ public:
 	bool load();
 	bool reload();
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] consumer entry paired with BootSeam.onDatabaseLoad: merge an additional
+	// file on top of the default location (loaded last -> its entries win field-by-field).
+	// A public wrapper because load(path) is deliberately private upstream.
+	bool loadExtra( const std::string& path ){
+		return this->load( path );
+	}
+#endif
+
 	// Functions that need to be implemented for each type
 	virtual void clear() = 0;
 	virtual const std::string getDefaultLocation() = 0;
