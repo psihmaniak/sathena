@@ -44,6 +44,10 @@
 #if PACKETVER >= 20110817
 	/// Comment to disable the official packet obfuscation support.
 	/// This requires PACKETVER 2011-08-17 or newer.
+#ifndef PACKET_OBFUSCATION_OFF
+	// SATHENA: defining PACKET_OBFUSCATION_OFF (e.g. from a consumer's custom/defines_pre.hpp)
+	// disables obfuscation WITHOUT editing this file — headless test clients need plaintext.
+	// Vanilla behavior (obfuscation on) is unchanged when the knob is absent.
 	#ifndef PACKET_OBFUSCATION
 		#define PACKET_OBFUSCATION
 
@@ -55,6 +59,7 @@
 		/// Comment this to disable warnings for missing client side encryption
 		#define PACKET_OBFUSCATION_WARN
 	#endif
+#endif
 #else
 	#if defined(PACKET_OBFUSCATION)
 		#error You enabled packet obfuscation for a version which is too old. Minimum supported client is 2011-08-17.
