@@ -1109,6 +1109,15 @@ enum e_job {
 
 	JOB_SECOND_JOB_END = 4350,
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] custom JOB id range — the consumer's <custom/job_enum.inc> defines ids
+	// with EXPLICIT high values (e.g. JOB_X = 5000) so upstream job additions never shift
+	// them. JOB_MAX (and CLASS_COUNT, derived from it) land ABOVE the block; nothing is
+	// statically sized off CLASS_COUNT (JobDatabase is a YAML map), so growth is free.
+	// Stub ships empty. PLACEMENT: last entries before JOB_MAX.
+	#include <custom/job_enum.inc>
+#endif
+
 	JOB_MAX,
 };
 
