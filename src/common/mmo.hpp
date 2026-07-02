@@ -39,7 +39,10 @@
 	#define MAX_HOTKEYS_DB MAX_HOTKEYS
 #endif
 
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_MAP_PER_SERVER
 #define MAX_MAP_PER_SERVER 1500 /// Maximum amount of maps available on a server
+#endif
 
 #ifndef INVENTORY_BASE_SIZE
 	#define INVENTORY_BASE_SIZE 100 // Amount of inventory slots each player has
@@ -77,8 +80,14 @@ typedef uint32 t_itemid;
 
 /** Number of slots carded equipment can have. Never set to less than 4 as they are also used to keep the data of forged items/equipment. [Skotlex]
 * Note: The client seems unable to receive data for more than 4 slots due to all related packets having a fixed size. */
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_SLOTS
 #define MAX_SLOTS 4
+#endif
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_AMOUNT
 #define MAX_AMOUNT 30000 ////Max amount of a single stacked item
+#endif
 #define MAX_ZENY INT_MAX ///Max zeny
 #define MAX_BANK_ZENY SINT32_MAX ///Max zeny in Bank
 #ifndef MAX_CASHPOINT
@@ -88,29 +97,62 @@ typedef uint32 t_itemid;
 	#define MAX_KAFRAPOINT INT_MAX
 #endif
 #define MAX_FAME 1000000000 ///Max fame points
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_CART
 #define MAX_CART 100 ///Maximum item in cart
+#endif
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_SKILL
 #define MAX_SKILL 1641 ///Maximum skill can be hold by Player, Homunculus, & Mercenary (skill list) AND skill_db limit
+#endif
 #define DEFAULT_WALK_SPEED 150 ///Default walk speed (other than NPC)
 #define DEFAULT_NPC_WALK_SPEED 200 ///Default NPC walk speed
 #define MIN_WALK_SPEED 20 ///Min walk speed
 #define MAX_WALK_SPEED 1000 ///Max walk speed
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_STORAGE
 #define MAX_STORAGE 600 ///Max number of storage slots a player can have
+#endif
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_GUILD_STORAGE
 #define MAX_GUILD_STORAGE 600 ///Max number of storage slots a guild
+#endif
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_PARTY
 #define MAX_PARTY 12 ///Max party member
+#endif
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_GUILD
 #define MAX_GUILD 16+10*6	///Increased max guild members +6 per 1 extension levels [Lupus]
+#endif
 #define MAX_GUILDPOSITION 20	///Increased max guild positions to accommodate for all members [Valaris] (removed) [PoW]
 #define MAX_GUILDEXPULSION 32 ///Max Guild expulsion
 #define MAX_GUILDALLIANCE 16 ///Max Guild alliance
 #ifdef RENEWAL
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_GUILDSKILL
 #define MAX_GUILDSKILL	20 ///Max Guild skills
+#endif
 #else
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_GUILDSKILL
 #define MAX_GUILDSKILL	15 ///Max Guild skills
 #endif
+#endif
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_GUILDLEVEL
 #define MAX_GUILDLEVEL 50 ///Max Guild level
+#endif
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_GUARDIANS
 #define MAX_GUARDIANS 8	///Local max per castle. If this value is increased, need to add more fields on MySQL `guild_castle` table [Skotlex]
+#endif
 #define MAX_QUEST_OBJECTIVES 3 ///Max quest objectives for a quest
 #define MAX_PC_BONUS_SCRIPT 50 ///Max bonus script can be fetched from `bonus_script` table on player load [Cydh]
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_ITEM_RDM_OPT
 #define MAX_ITEM_RDM_OPT 5	 /// Max item random option [Napster]
+#endif
 #define DB_NAME_LEN 256 //max len of dbs
 #define MAX_CLAN 500
 #define MAX_CLANALLIANCE 6

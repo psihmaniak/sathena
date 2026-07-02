@@ -75,10 +75,16 @@ void map_msg_reload(void);
 #define NATURAL_HEAL_INTERVAL 500
 #define MIN_FLOORITEM 2
 #define MAX_FLOORITEM START_ACCOUNT_NUM
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_LEVEL
 #define MAX_LEVEL 275
+#endif
 #define MAX_DROP_PER_MAP 48
 #define MAX_IGNORE_LIST 20 	// official is 14
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_VENDING
 #define MAX_VENDING 12
+#endif
 #define MAX_MAP_SIZE 512*512 	// Wasn't there something like this already? Can't find it.. [Shinryo]
 
 //The following system marks a different job ID system used by the map server,

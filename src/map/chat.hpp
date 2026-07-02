@@ -8,7 +8,10 @@
 
 class map_session_data;
 
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_CHAT_USERS
 #define MAX_CHAT_USERS 20
+#endif
 
 struct chat_data : public block_list {
 	char title[CHATROOM_TITLE_SIZE]; // room title 

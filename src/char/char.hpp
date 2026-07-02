@@ -209,7 +209,10 @@ struct CharServ_Config {
 };
 extern struct CharServ_Config charserv_config;
 
+// SATHENA: #ifndef-guarded — overridable from a consumer's custom/defines_pre.hpp
+#ifndef MAX_MAP_SERVERS
 #define MAX_MAP_SERVERS 2 //how many mapserver a char server can handle
+#endif
 struct mmo_map_server {
 	int32 fd;
 	uint32 ip;
