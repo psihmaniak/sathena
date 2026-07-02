@@ -5,7 +5,7 @@
 #define SEAM_NET_HPP
 
 // [SATHENA-SEAM interface] NetSeam — packet-egress observation. Default = no-op.
-// Consumers (e.g. a test build's packet tap) replace the instance via net_seam() = &impl;
+// Consumers replace the instance via net_seam() = &impl;
 // Hot path: one pointer deref + virtual call per outgoing packet — negligible, and the
 // default body is empty.
 

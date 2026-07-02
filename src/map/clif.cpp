@@ -6762,8 +6762,7 @@ void clif_GlobalMessage( const block_list& bl, const char* message, enum send_ta
 
 #ifdef SATHENA
 	// [SATHENA-SEAM] ChatSeam.onChatDeliver — a message is being broadcast to `target`.
-	// PLACEMENT: top of clif_GlobalMessage; the consumer taps delivery (per-player ignore
-	// extension, analytics) and is the anchor for the i18n translation override.
+	// PLACEMENT: top of clif_GlobalMessage; the consumer taps delivery here.
 	chat_seam()->onChatDeliver( bl, message );
 #endif
 

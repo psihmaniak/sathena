@@ -6,9 +6,8 @@
 
 // [SATHENA-SEAM interface] ChatSeam — the chat pipeline. onChatSend fires after a player chat
 // line is validated in clif_process_message (name/message are MUTABLE buffers → rewrite in
-// place for swear/RMT/format; return false to BLOCK the line). onChatDeliver fires at the top
-// of clif_GlobalMessage (area delivery) — the point a consumer can extend per-player ignore or
-// run the i18n translation override. Default = pass-through / no-op => vanilla chat.
+// place; return false to BLOCK the line). onChatDeliver fires at the top of clif_GlobalMessage
+// (area delivery). Default = pass-through / no-op => vanilla chat.
 
 class map_session_data;
 class block_list;

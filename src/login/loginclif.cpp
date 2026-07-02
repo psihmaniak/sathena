@@ -92,10 +92,9 @@ static void logclif_auth_ok(struct login_session_data* sd) {
 		{// account is already marked as online!
 			bool sathena_login_spare = false;
 #ifdef SATHENA
-			// [SATHENA-SEAM] LoginSessionSeam.onAccountAlreadyOnline — spare the existing
-			// session (skip the kick+reject) so a player can re-login while their autotrader
-			// persists. PLACEMENT: the login dup-gate, before the kick. Pairs with the
-			// char-server CharSessionSeam. Default false => vanilla kick+reject.
+			// [SATHENA-SEAM] LoginSessionSeam.onAccountAlreadyOnline — return true to spare the
+			// existing session (skip the kick+reject). PLACEMENT: the login dup-gate, before the
+			// kick. Pairs with the char-server CharSessionSeam. Default false => vanilla kick+reject.
 			sathena_login_spare = login_session_seam()->onAccountAlreadyOnline( sd->account_id, data->char_server );
 #endif
 			if( !sathena_login_spare && data->char_server > -1 )

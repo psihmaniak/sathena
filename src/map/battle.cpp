@@ -7897,8 +7897,8 @@ int32 battle_check_target( const block_list* src, const block_list* target, int3
 #ifdef SATHENA
 	// [SATHENA-SEAM] CombatRuleSeam.onCheckTarget — override the can-attack decision.
 	// PLACEMENT: top of battle_check_target after the nullpo guards, before any vanilla
-	// state logic; a true return short-circuits with the consumer's verdict (contracts,
-	// custom PVP rules, area/faction gates), false = vanilla. Single choke for all callers.
+	// state logic; a true return short-circuits with the consumer's verdict, false =
+	// vanilla. Single choke for all callers.
 	{
 		int32 sathena_out = 0;
 		if( combat_rule_seam()->onCheckTarget( src, target, flag, sathena_out ) )

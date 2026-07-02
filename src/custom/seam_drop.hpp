@@ -6,10 +6,9 @@
 
 // [SATHENA-SEAM interface] DropSeam — per-context drop-rate decision. onDropRate fires inside
 // mob_getdroprate (every drop's rate flows through it) with the killer + dying mob; the
-// consumer mutates the final rate (0..10000 basis points) in place — drop-by-killer/context,
-// event multipliers, and punishment (0 drops for a flagged player). Default no-op => vanilla.
-// Item-specific decisions (conditional drops, champion-max-options) attach later at the
-// per-item drop loop; this covers the rate for every drop.
+// consumer mutates the final rate (0..10000 basis points) in place. Default no-op => vanilla.
+// This covers the rate for every drop; per-item decisions would attach later at the per-item
+// drop loop.
 
 #include "../common/cbasetypes.hpp"   // int32
 

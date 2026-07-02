@@ -5862,8 +5862,7 @@ char pc_payzeny(map_session_data *sd, int32 zeny, enum e_log_pick_type type, uin
 
 #ifdef SATHENA
 	// [SATHENA-SEAM] EconomySeam.onZenyChange — a zeny outflow just applied. PLACEMENT: after
-	// the balance is debited, delta is the negative applied amount; consumer takes the
-	// castle/guild cut into a server-side fund store (in-engine, no bus).
+	// the balance is debited; delta is the negative applied amount.
 	economy_seam()->onZenyChange( sd, -zeny, type );
 #endif
 
@@ -10849,7 +10848,7 @@ int32 pc_itemheal(map_session_data *sd, t_itemid itemid, int32 hp, int32 sp)
 #ifdef SATHENA
 	// [SATHENA-SEAM] ResourceSeam.onItemHeal — final HP/SP heal adjustment. PLACEMENT: end of
 	// pc_itemheal, after every vanilla heal-rate bonus, before status_heal applies it; hp/sp
-	// are mutable (item-heal-% from a custom SC, HP<->SP convert, consumable rework).
+	// are mutable in place.
 	resource_seam()->onItemHeal( sd, itemid, hp, sp );
 #endif
 

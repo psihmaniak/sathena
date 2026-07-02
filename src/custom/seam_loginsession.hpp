@@ -6,10 +6,8 @@
 
 // [SATHENA-SEAM interface] LoginSessionSeam — the login-server half of the session-policy
 // family (pairs with CharSessionSeam on the char server). onAccountAlreadyOnline fires at the
-// login dup-login gate; return true to SPARE the existing session (skip the kick+reject) so a
-// player can re-login while their autotrader/shared session persists. Default false => vanilla
-// kick+reject. Autotrade-coexist needs BOTH this and CharSessionSeam to spare, plus the
-// online-ledger extension (deferred content).
+// login dup-login gate; return true to SPARE the existing session (skip the kick+reject),
+// false => vanilla kick+reject. Default false.
 
 #include "../common/cbasetypes.hpp"   // uint32 / int32
 

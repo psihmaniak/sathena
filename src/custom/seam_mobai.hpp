@@ -6,11 +6,10 @@
 
 // [SATHENA-SEAM interface] MobAISeam — a per-mob AI-tick override. onAiTick fires each 100ms
 // think cycle after the vanilla early-outs (mob alive, thinktime elapsed, not stunned) and
-// BEFORE the vanilla skill+target cascade; return true to REPLACE this tick's vanilla AI
-// (threat table, tank-swap, positional kite), false to run vanilla. Opt-in is the consumer's
-// job — it keys on mob_id / a side-table (NOT a mob_data field → no struct drift), so 99% of
-// mobs pay one virtual call and fall straight through. IN-ENGINE only (per-mob/100ms budget).
-// Default no-op (returns false) => pure vanilla AI.
+// BEFORE the vanilla skill+target cascade; return true to REPLACE this tick's vanilla AI,
+// false to run vanilla. Opt-in is the consumer's job — it keys on mob_id / a side-table (NOT
+// a mob_data field → no struct drift), so 99% of mobs pay one virtual call and fall straight
+// through. IN-ENGINE only (per-mob/100ms budget). Default no-op (returns false) => pure vanilla AI.
 
 #include "../common/timer.hpp"   // t_tick
 

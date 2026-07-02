@@ -6,8 +6,7 @@
 
 // [SATHENA-SEAM interface] EconomySeam — zeny-flow observation/side-effects. onZenyChange fires
 // after every pc_getzeny/pc_payzeny applies, with the SIGNED applied delta (+gained / -paid)
-// and the log-type. In-engine consumer computes the guild/castle economy cut and credits a
-// server-side fund store (no bus round-trip). Default no-op => vanilla.
+// and the log-type. Default no-op => vanilla.
 
 #include "../common/cbasetypes.hpp"   // int32
 

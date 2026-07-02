@@ -1547,9 +1547,8 @@ int32 status_damage(block_list *src,block_list *target,int64 dhp, int64 dsp, int
 
 #ifdef SATHENA
 	// [SATHENA-SEAM] CombatOutcomeSeam.onDamageTaken — applied-damage choke. PLACEMENT: after
-	// hp is capped to current HP (so hp >= status->hp == lethal), before it is deducted; the
-	// consumer clamps/bands the number, applies an HP-floor / resurrect (leave hp < status->hp
-	// to survive), or fires on-damage-taken reactive triggers. hp is mutable in place.
+	// hp is capped to current HP (so hp >= status->hp == lethal), before it is deducted. hp is
+	// mutable in place (leave hp < status->hp to keep the target alive).
 	combat_outcome_seam()->onDamageTaken( src, target, hp, (int32)status->hp, flag, skill_id );
 #endif
 
@@ -13374,8 +13373,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 #ifdef SATHENA
 	// [SATHENA-SEAM] StatusSeam.onStatusStart — an SC has been committed. PLACEMENT: the
 	// success tail of status_change_start_post_delay (where the sce is created, all
-	// early-outs/resists passed), so a consumer reacts to a live SC: ensemble mutex,
-	// on-inflict mirror, umbrella-immunity. `tick` is the applied duration.
+	// early-outs/resists passed), so a consumer reacts to a live SC. `tick` is the applied duration.
 	status_seam()->onStatusStart( bl, type, val1, tick );
 #endif
 
@@ -13477,10 +13475,10 @@ int32 status_change_end( block_list* bl, enum sc_type type, int32 tid ){
 			return 0;
 
 #ifdef SATHENA
-		// [SATHENA-SEAM] StatusSeam.onStatusEnd — veto removal (return false) for dispel/death
-		// policy (NoDispel / NoRemoveOnDead). PLACEMENT: after the stale-timer guard, before
-		// removal. `forced` = tid == INVALID_TIMER (dispel/death/manual) vs a natural timer
-		// expiry, so a consumer scopes its veto to forced ends and never freezes a timer.
+		// [SATHENA-SEAM] StatusSeam.onStatusEnd — veto removal (return false). PLACEMENT: after
+		// the stale-timer guard, before removal. `forced` = tid == INVALID_TIMER (dispel/death/
+		// manual) vs a natural timer expiry, so a consumer scopes its veto to forced ends and
+		// never freezes a timer.
 		if( !status_seam()->onStatusEnd( bl, type, tid == INVALID_TIMER ) )
 			return 0;
 #endif

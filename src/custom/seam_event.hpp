@@ -5,10 +5,8 @@
 #define SEAM_EVENT_HPP
 
 // [SATHENA-SEAM interface] EventSeam — realtime gameplay CHOKE-POINTS (kill/death/skill-use/
-// level/login...). The consumer emits to the bus AND/OR runs in-engine logic (on-kill grants,
-// champion counters, drop-by-context state). Distinct from LogSeam (the comprehensive audit
-// stream) — EventSeam is curated realtime. Hooks are wired incrementally; each is one
-// call-site. Default no-op => pure vanilla.
+// level/login...). Distinct from LogSeam (the audit stream) — EventSeam is curated realtime.
+// Hooks are wired incrementally; each is one call-site. Default no-op => pure vanilla.
 
 #include "../common/cbasetypes.hpp"   // int32
 

@@ -6,9 +6,8 @@
 
 // [SATHENA-SEAM interface] ResourceSeam — the HP/SP resource pipeline. onItemHeal fires at the
 // end of pc_itemheal, after all vanilla heal-rate bonuses, with the FINAL hp/sp mutable by
-// reference: item-heal-% from a custom SC, heal-target convert (HP<->SP, e.g. Mediale Votum),
-// consumable reworks. (Regen interval/amount + skill HP/SP cost are sibling hooks in
-// status_natural_heal / skill_consume, added as their content lands.) Default no-op => vanilla.
+// reference. (Regen interval/amount + skill HP/SP cost are sibling hooks in status_natural_heal
+// / skill_consume.) Default no-op => vanilla.
 
 #include "../common/cbasetypes.hpp"   // int32 / uint32
 

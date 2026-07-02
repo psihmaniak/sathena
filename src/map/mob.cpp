@@ -1877,8 +1877,8 @@ static bool mob_ai_sub_hard(mob_data *md, t_tick tick)
 #ifdef SATHENA
 	// [SATHENA-SEAM] MobAISeam.onAiTick — per-mob AI override. PLACEMENT: after the vanilla
 	// "skip thinking" early-outs (alive/thinktime/stun) and BEFORE the skill+target cascade,
-	// so a consumer's threat/positional AI replaces this tick (return true) or falls through
-	// to vanilla (false). Opt-in keyed in the consumer (mob_id/side-table), no struct field.
+	// so a consumer's AI replaces this tick (return true) or falls through to vanilla (false).
+	// Opt-in keyed in the consumer (mob_id/side-table), no struct field.
 	if( mob_ai_seam()->onAiTick( md, tick ) )
 		return true;
 #endif
@@ -2906,7 +2906,7 @@ int32 mob_getdroprate(block_list *src, std::shared_ptr<s_mob_db> mob, int32 base
 #ifdef SATHENA
 	// [SATHENA-SEAM] DropSeam.onDropRate — final per-context drop-rate decision. PLACEMENT:
 	// the single return of mob_getdroprate, which every drop rate (regular/card/loot) flows
-	// through; consumer adjusts the rate by killer(src)/mob context (event mult, punishment).
+	// through; consumer adjusts the rate by killer(src)/mob context.
 	drop_seam()->onDropRate( src, md, drop_rate );
 #endif
 

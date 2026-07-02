@@ -4,13 +4,12 @@
 #ifndef SEAM_STATUS_HPP
 #define SEAM_STATUS_HPP
 
-// [SATHENA-SEAM interface] StatusSeam — the status-lifecycle hooks (widest status dependency).
-// onStatusStart fires when an SC has been committed (end of status_change_start): ensemble
-// mutex, on-inflict mirror-to-self, umbrella-immunity granting. onStatusEnd fires in
-// status_change_end after the stale-timer guard, BEFORE removal — return false to VETO the
-// removal (NoDispel / NoRemoveOnDead). `forced` distinguishes a forced end (dispel/death/
-// manual: tid == INVALID_TIMER) from natural timer expiry, so a consumer scopes its veto to
-// forced ends only and never freezes a timer. Default: no-op start / allow-all end => vanilla.
+// [SATHENA-SEAM interface] StatusSeam — the status-lifecycle hooks. onStatusStart fires when an
+// SC has been committed (end of status_change_start). onStatusEnd fires in status_change_end
+// after the stale-timer guard, BEFORE removal — return false to VETO the removal. `forced`
+// distinguishes a forced end (dispel/death/manual: tid == INVALID_TIMER) from natural timer
+// expiry, so a consumer scopes its veto to forced ends only and never freezes a timer.
+// Default: no-op start / allow-all end => vanilla.
 
 #include "../common/cbasetypes.hpp"   // int32 / int64
 

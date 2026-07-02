@@ -1,0 +1,735 @@
+{"t":1782979602789,"sub":"npc","ev":"add","d":"file=../thenro/script/custom/_probe.txt"}
+{"t":1782979602789,"sub":"npc","ev":"add","d":"file=../thenro/script/custom/_combat_probe.txt"}
+{"t":1782979602791,"sub":"boot","ev":"server_boot","d":"type=login"}
+{"t":1782979602835,"sub":"boot","ev":"server_boot","d":"type=char"}
+{"t":1782979603803,"sub":"net","ev":"send","d":"fd=6 id=0x2710 len=86"}
+{"t":1782979603805,"sub":"net","ev":"send","d":"fd=6 id=0x272d len=8"}
+{"t":1782979603810,"sub":"net","ev":"send","d":"fd=8 id=0x2711 len=3"}
+{"t":1782979603810,"sub":"net","ev":"send","d":"fd=6 id=0x272d len=8"}
+{"t":1782979605251,"sub":"content","ev":"load","d":"type=ITEM_DB file=../thenro/items/Knife.yml"}
+{"t":1782979605791,"sub":"skill","ev":"create","d":"id=SM_BASH"}
+{"t":1782979608112,"sub":"status","ev":"start","d":"gid=110017273 sc=658 val1=0 dur=-1"}
+{"t":1782979608112,"sub":"status","ev":"start","d":"gid=110017273 sc=660 val1=0 dur=-1"}
+{"t":1782979608182,"sub":"status","ev":"start","d":"gid=110017272 sc=658 val1=0 dur=-1"}
+{"t":1782979608182,"sub":"status","ev":"start","d":"gid=110017272 sc=659 val1=0 dur=-1"}
+{"t":1782979608185,"sub":"status","ev":"start","d":"gid=110017274 sc=658 val1=0 dur=-1"}
+{"t":1782979608185,"sub":"status","ev":"start","d":"gid=110017274 sc=661 val1=0 dur=-1"}
+{"t":1782979608978,"sub":"status","ev":"start","d":"gid=110017275 sc=658 val1=0 dur=-1"}
+{"t":1782979608978,"sub":"status","ev":"start","d":"gid=110017275 sc=662 val1=0 dur=-1"}
+{"t":1782979609142,"sub":"boot","ev":"server_boot","d":"type=map"}
+{"t":1782979609142,"sub":"net","ev":"send","d":"fd=8 id=0x2af8 len=60"}
+{"t":1782979609145,"sub":"net","ev":"send","d":"fd=7 id=0x2af9 len=3"}
+{"t":1782979609145,"sub":"net","ev":"send","d":"fd=7 id=0x388c len=288"}
+{"t":1782979609145,"sub":"net","ev":"send","d":"fd=8 id=0x2afa len=20244"}
+{"t":1782979609146,"sub":"net","ev":"send","d":"fd=8 id=0x3040 len=180"}
+{"t":1782979609146,"sub":"net","ev":"send","d":"fd=8 id=0x30a0 len=2"}
+{"t":1782979609147,"sub":"net","ev":"send","d":"fd=7 id=0x2afb len=53"}
+{"t":1782979609147,"sub":"net","ev":"send","d":"fd=7 id=0x2b1b len=8"}
+{"t":1782979609168,"sub":"net","ev":"send","d":"fd=7 id=0x3840 len=9860"}
+{"t":1782979609168,"sub":"net","ev":"send","d":"fd=7 id=0x38a0 len=17092"}
+{"t":1782979609168,"sub":"net","ev":"send","d":"fd=8 id=0x2aff len=6"}
+{"t":1782979609175,"sub":"event","ev":"skill_use","d":"src=110024985 tgt=110024985 skill=196 lv=3"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024986 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024987 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024988 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"event","ev":"skill_use","d":"src=110024989 tgt=110024989 skill=196 lv=10"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024990 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024991 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024992 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024993 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024994 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024995 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024996 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024997 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024998 sc=177 val1=1 dur=-1"}
+{"t":1782979609175,"sub":"status","ev":"start","d":"gid=110024999 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"event","ev":"skill_use","d":"src=110025132 tgt=110025132 skill=196 lv=3"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025133 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025134 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025135 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"event","ev":"skill_use","d":"src=110025136 tgt=110025136 skill=196 lv=5"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025137 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025138 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025139 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025140 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025141 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"event","ev":"skill_use","d":"src=110025167 tgt=110025167 skill=196 lv=3"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025168 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025169 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025170 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"event","ev":"skill_use","d":"src=110025171 tgt=110025171 skill=196 lv=5"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025172 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025173 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025174 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025175 sc=177 val1=1 dur=-1"}
+{"t":1782979609178,"sub":"status","ev":"start","d":"gid=110025176 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"event","ev":"skill_use","d":"src=110025218 tgt=110025218 skill=196 lv=3"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025219 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025220 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025221 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"event","ev":"skill_use","d":"src=110025222 tgt=110025222 skill=196 lv=5"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025223 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025224 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025225 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025226 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025227 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"event","ev":"skill_use","d":"src=110025253 tgt=110025253 skill=196 lv=3"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025254 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025255 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025256 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"event","ev":"skill_use","d":"src=110025257 tgt=110025257 skill=196 lv=5"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025258 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025259 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025260 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025261 sc=177 val1=1 dur=-1"}
+{"t":1782979609179,"sub":"status","ev":"start","d":"gid=110025262 sc=177 val1=1 dur=-1"}
+{"t":1782979609180,"sub":"event","ev":"skill_use","d":"src=110025296 tgt=110025296 skill=196 lv=2"}
+{"t":1782979609180,"sub":"status","ev":"start","d":"gid=110025297 sc=177 val1=1 dur=-1"}
+{"t":1782979609180,"sub":"status","ev":"start","d":"gid=110025298 sc=177 val1=1 dur=-1"}
+{"t":1782979609180,"sub":"event","ev":"skill_use","d":"src=110025313 tgt=110025313 skill=196 lv=2"}
+{"t":1782979609180,"sub":"status","ev":"start","d":"gid=110025314 sc=177 val1=1 dur=-1"}
+{"t":1782979609180,"sub":"status","ev":"start","d":"gid=110025315 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"event","ev":"skill_use","d":"src=110025396 tgt=110025396 skill=196 lv=3"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025397 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025398 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025399 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"event","ev":"skill_use","d":"src=110025400 tgt=110025400 skill=196 lv=10"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025401 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025402 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025403 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025404 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025405 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025406 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025407 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025408 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025409 sc=177 val1=1 dur=-1"}
+{"t":1782979609181,"sub":"status","ev":"start","d":"gid=110025410 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"event","ev":"skill_use","d":"src=110025463 tgt=110025463 skill=196 lv=3"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025464 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025465 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025466 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"event","ev":"skill_use","d":"src=110025467 tgt=110025467 skill=196 lv=5"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025468 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025469 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025470 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025471 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025472 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"event","ev":"skill_use","d":"src=110025498 tgt=110025498 skill=196 lv=3"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025499 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025500 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025501 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"event","ev":"skill_use","d":"src=110025502 tgt=110025502 skill=196 lv=5"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025503 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025504 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025505 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025506 sc=177 val1=1 dur=-1"}
+{"t":1782979609182,"sub":"status","ev":"start","d":"gid=110025507 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"event","ev":"skill_use","d":"src=110025541 tgt=110025541 skill=196 lv=2"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025542 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025543 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"event","ev":"skill_use","d":"src=110025558 tgt=110025558 skill=196 lv=2"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025559 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025560 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"event","ev":"skill_use","d":"src=110025641 tgt=110025641 skill=196 lv=3"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025642 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025643 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025644 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"event","ev":"skill_use","d":"src=110025645 tgt=110025645 skill=196 lv=10"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025646 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025647 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025648 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025649 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025650 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025651 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025652 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025653 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025654 sc=177 val1=1 dur=-1"}
+{"t":1782979609183,"sub":"status","ev":"start","d":"gid=110025655 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"event","ev":"skill_use","d":"src=110025708 tgt=110025708 skill=196 lv=3"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025709 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025710 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025711 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"event","ev":"skill_use","d":"src=110025712 tgt=110025712 skill=196 lv=5"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025713 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025714 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025715 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025716 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025717 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"event","ev":"skill_use","d":"src=110025743 tgt=110025743 skill=196 lv=3"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025744 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025745 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025746 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"event","ev":"skill_use","d":"src=110025747 tgt=110025747 skill=196 lv=5"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025748 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025749 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025750 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025751 sc=177 val1=1 dur=-1"}
+{"t":1782979609184,"sub":"status","ev":"start","d":"gid=110025752 sc=177 val1=1 dur=-1"}
+{"t":1782979609185,"sub":"event","ev":"skill_use","d":"src=110025786 tgt=110025786 skill=196 lv=2"}
+{"t":1782979609185,"sub":"status","ev":"start","d":"gid=110025787 sc=177 val1=1 dur=-1"}
+{"t":1782979609185,"sub":"status","ev":"start","d":"gid=110025788 sc=177 val1=1 dur=-1"}
+{"t":1782979609185,"sub":"event","ev":"skill_use","d":"src=110025803 tgt=110025803 skill=196 lv=2"}
+{"t":1782979609185,"sub":"status","ev":"start","d":"gid=110025804 sc=177 val1=1 dur=-1"}
+{"t":1782979609185,"sub":"status","ev":"start","d":"gid=110025805 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"event","ev":"skill_use","d":"src=110025886 tgt=110025886 skill=196 lv=3"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025887 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025888 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025889 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"event","ev":"skill_use","d":"src=110025890 tgt=110025890 skill=196 lv=10"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025891 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025892 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025893 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025894 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025895 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025896 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025897 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025898 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025899 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"status","ev":"start","d":"gid=110025900 sc=177 val1=1 dur=-1"}
+{"t":1782979609186,"sub":"event","ev":"skill_use","d":"src=110025945 tgt=110025945 skill=196 lv=2"}
+{"t":1782979609187,"sub":"status","ev":"start","d":"gid=110025946 sc=177 val1=1 dur=-1"}
+{"t":1782979609187,"sub":"status","ev":"start","d":"gid=110025947 sc=177 val1=1 dur=-1"}
+{"t":1782979609187,"sub":"event","ev":"skill_use","d":"src=110025962 tgt=110025962 skill=196 lv=2"}
+{"t":1782979609187,"sub":"status","ev":"start","d":"gid=110025963 sc=177 val1=1 dur=-1"}
+{"t":1782979609187,"sub":"status","ev":"start","d":"gid=110025964 sc=177 val1=1 dur=-1"}
+{"t":1782979609188,"sub":"event","ev":"skill_use","d":"src=110026074 tgt=110026074 skill=196 lv=2"}
+{"t":1782979609188,"sub":"status","ev":"start","d":"gid=110026075 sc=177 val1=1 dur=-1"}
+{"t":1782979609188,"sub":"status","ev":"start","d":"gid=110026076 sc=177 val1=1 dur=-1"}
+{"t":1782979609188,"sub":"event","ev":"skill_use","d":"src=110026091 tgt=110026091 skill=196 lv=2"}
+{"t":1782979609188,"sub":"status","ev":"start","d":"gid=110026092 sc=177 val1=1 dur=-1"}
+{"t":1782979609188,"sub":"status","ev":"start","d":"gid=110026093 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"event","ev":"skill_use","d":"src=110026131 tgt=110026131 skill=196 lv=3"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026132 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026133 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026134 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"event","ev":"skill_use","d":"src=110026135 tgt=110026135 skill=196 lv=5"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026136 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026137 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026138 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026139 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026140 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"event","ev":"skill_use","d":"src=110026166 tgt=110026166 skill=196 lv=3"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026167 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026168 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026169 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"event","ev":"skill_use","d":"src=110026170 tgt=110026170 skill=196 lv=5"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026171 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026172 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026173 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026174 sc=177 val1=1 dur=-1"}
+{"t":1782979609189,"sub":"status","ev":"start","d":"gid=110026175 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"event","ev":"skill_use","d":"src=110026340 tgt=110026340 skill=196 lv=3"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026341 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026342 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026343 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"event","ev":"skill_use","d":"src=110026344 tgt=110026344 skill=196 lv=10"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026345 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026346 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026347 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026348 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026349 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026350 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026351 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026352 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026353 sc=177 val1=1 dur=-1"}
+{"t":1782979609190,"sub":"status","ev":"start","d":"gid=110026354 sc=177 val1=1 dur=-1"}
+{"t":1782979609200,"sub":"event","ev":"skill_use","d":"src=110027289 tgt=110027289 skill=196 lv=2"}
+{"t":1782979609200,"sub":"status","ev":"start","d":"gid=110027290 sc=177 val1=1 dur=-1"}
+{"t":1782979609200,"sub":"status","ev":"start","d":"gid=110027291 sc=177 val1=1 dur=-1"}
+{"t":1782979609200,"sub":"event","ev":"skill_use","d":"src=110027305 tgt=110027305 skill=196 lv=2"}
+{"t":1782979609200,"sub":"status","ev":"start","d":"gid=110027306 sc=177 val1=1 dur=-1"}
+{"t":1782979609200,"sub":"status","ev":"start","d":"gid=110027307 sc=177 val1=1 dur=-1"}
+{"t":1782979609201,"sub":"event","ev":"skill_use","d":"src=110027427 tgt=110027427 skill=196 lv=2"}
+{"t":1782979609201,"sub":"status","ev":"start","d":"gid=110027428 sc=177 val1=1 dur=-1"}
+{"t":1782979609201,"sub":"status","ev":"start","d":"gid=110027429 sc=177 val1=1 dur=-1"}
+{"t":1782979609201,"sub":"event","ev":"skill_use","d":"src=110027443 tgt=110027443 skill=196 lv=2"}
+{"t":1782979609201,"sub":"status","ev":"start","d":"gid=110027444 sc=177 val1=1 dur=-1"}
+{"t":1782979609201,"sub":"status","ev":"start","d":"gid=110027445 sc=177 val1=1 dur=-1"}
+{"t":1782979609203,"sub":"event","ev":"skill_use","d":"src=110027565 tgt=110027565 skill=196 lv=2"}
+{"t":1782979609203,"sub":"status","ev":"start","d":"gid=110027566 sc=177 val1=1 dur=-1"}
+{"t":1782979609203,"sub":"status","ev":"start","d":"gid=110027567 sc=177 val1=1 dur=-1"}
+{"t":1782979609203,"sub":"event","ev":"skill_use","d":"src=110027581 tgt=110027581 skill=196 lv=2"}
+{"t":1782979609203,"sub":"status","ev":"start","d":"gid=110027582 sc=177 val1=1 dur=-1"}
+{"t":1782979609203,"sub":"status","ev":"start","d":"gid=110027583 sc=177 val1=1 dur=-1"}
+{"t":1782979609204,"sub":"event","ev":"skill_use","d":"src=110027703 tgt=110027703 skill=196 lv=2"}
+{"t":1782979609204,"sub":"status","ev":"start","d":"gid=110027704 sc=177 val1=1 dur=-1"}
+{"t":1782979609204,"sub":"status","ev":"start","d":"gid=110027705 sc=177 val1=1 dur=-1"}
+{"t":1782979609204,"sub":"event","ev":"skill_use","d":"src=110027719 tgt=110027719 skill=196 lv=2"}
+{"t":1782979609204,"sub":"status","ev":"start","d":"gid=110027720 sc=177 val1=1 dur=-1"}
+{"t":1782979609204,"sub":"status","ev":"start","d":"gid=110027721 sc=177 val1=1 dur=-1"}
+{"t":1782979609205,"sub":"event","ev":"skill_use","d":"src=110027841 tgt=110027841 skill=196 lv=2"}
+{"t":1782979609206,"sub":"status","ev":"start","d":"gid=110027842 sc=177 val1=1 dur=-1"}
+{"t":1782979609206,"sub":"status","ev":"start","d":"gid=110027843 sc=177 val1=1 dur=-1"}
+{"t":1782979609206,"sub":"event","ev":"skill_use","d":"src=110027857 tgt=110027857 skill=196 lv=2"}
+{"t":1782979609206,"sub":"status","ev":"start","d":"gid=110027858 sc=177 val1=1 dur=-1"}
+{"t":1782979609206,"sub":"status","ev":"start","d":"gid=110027859 sc=177 val1=1 dur=-1"}
+{"t":1782979612823,"sub":"net","ev":"send","d":"fd=9 id=0x0ac4 len=224"}
+{"t":1782979612824,"sub":"net","ev":"send","d":"fd=8 id=0x84e4 len=4"}
+{"t":1782979612824,"sub":"net","ev":"send","d":"fd=6 id=0x2712 len=23"}
+{"t":1782979612824,"sub":"net","ev":"send","d":"fd=8 id=0x2713 len=21"}
+{"t":1782979612826,"sub":"net","ev":"send","d":"fd=6 id=0x272b len=6"}
+{"t":1782979612833,"sub":"net","ev":"send","d":"fd=8 id=0x0ac5 len=156"}
+{"t":1782979612833,"sub":"net","ev":"send","d":"fd=6 id=0x2716 len=6"}
+{"t":1782979612833,"sub":"net","ev":"send","d":"fd=6 id=0x272b len=6"}
+{"t":1782979612834,"sub":"net","ev":"send","d":"fd=6 id=0x272c len=6"}
+{"t":1782979612834,"sub":"net","ev":"send","d":"fd=9 id=0x0283 len=6"}
+{"t":1782979612834,"sub":"net","ev":"send","d":"fd=8 id=0x2b26 len=20"}
+{"t":1782979612834,"sub":"net","ev":"send","d":"fd=7 id=0x2afd len=8881"}
+{"t":1782979612834,"sub":"net","ev":"send","d":"fd=8 id=0x2717 len=75"}
+{"t":1782979612835,"sub":"net","ev":"send","d":"fd=6 id=0x272b len=6"}
+{"t":1782979612835,"sub":"net","ev":"send","d":"fd=9 id=0x0b18 len=4"}
+{"t":1782979612835,"sub":"net","ev":"send","d":"fd=9 id=0x02eb len=13"}
+{"t":1782979612835,"sub":"net","ev":"send","d":"fd=9 id=0x0201 len=4"}
+{"t":1782979612835,"sub":"net","ev":"send","d":"fd=9 id=0x008e len=72"}
+{"t":1782979612835,"sub":"net","ev":"send","d":"fd=9 id=0x008e len=64"}
+{"t":1782979612835,"sub":"net","ev":"send","d":"fd=9 id=0x0091 len=22"}
+{"t":1782979612835,"sub":"net","ev":"send","d":"fd=8 id=0x3005 len=13"}
+{"t":1782979612836,"sub":"net","ev":"send","d":"fd=7 id=0x3804 len=16"}
+{"t":1782979612836,"sub":"net","ev":"send","d":"fd=7 id=0x3804 len=16"}
+{"t":1782979612837,"sub":"net","ev":"send","d":"fd=7 id=0x3804 len=16"}
+{"t":1782979612837,"sub":"net","ev":"send","d":"fd=7 id=0x3804 len=16"}
+{"t":1782979612837,"sub":"net","ev":"send","d":"fd=6 id=0x272e len=10"}
+{"t":1782979612838,"sub":"net","ev":"send","d":"fd=8 id=0x2726 len=16"}
+{"t":1782979612839,"sub":"net","ev":"send","d":"fd=8 id=0x2726 len=16"}
+{"t":1782979612839,"sub":"net","ev":"send","d":"fd=7 id=0x3804 len=16"}
+{"t":1782979612839,"sub":"net","ev":"send","d":"fd=7 id=0x3804 len=16"}
+{"t":1782979612839,"sub":"net","ev":"send","d":"fd=8 id=0x308a len=13"}
+{"t":1782979612839,"sub":"net","ev":"send","d":"fd=8 id=0x308a len=13"}
+{"t":1782979612839,"sub":"net","ev":"send","d":"fd=8 id=0x308a len=13"}
+{"t":1782979612839,"sub":"net","ev":"send","d":"fd=8 id=0x2b0a len=10"}
+{"t":1782979612839,"sub":"net","ev":"send","d":"fd=8 id=0x2b2d len=6"}
+{"t":1782979612839,"sub":"net","ev":"send","d":"fd=8 id=0x3048 len=8"}
+{"t":1782979612839,"sub":"net","ev":"send","d":"fd=8 id=0x3060 len=6"}
+{"t":1782979612839,"sub":"net","ev":"send","d":"fd=8 id=0x3062 len=6"}
+{"t":1782979612840,"sub":"net","ev":"send","d":"fd=7 id=0x388a len=46234"}
+{"t":1782979612841,"sub":"net","ev":"send","d":"fd=7 id=0x388a len=46234"}
+{"t":1782979612842,"sub":"net","ev":"send","d":"fd=7 id=0x388a len=46234"}
+{"t":1782979612844,"sub":"net","ev":"send","d":"fd=7 id=0x3848 len=30738"}
+{"t":1782979612845,"sub":"net","ev":"send","d":"fd=7 id=0x3860 len=8"}
+{"t":1782979612846,"sub":"net","ev":"send","d":"fd=7 id=0x3862 len=152"}
+{"t":1782979612847,"sub":"bonus","ev":"consume","d":"cid=150100 type=20000 val=7"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x013a len=4"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=8 id=0x2afc len=10"}
+{"t":1782979612847,"sub":"net","ev":"send","d":"fd=9 id=0x09e7 len=3"}
+{"t":1782979612848,"sub":"net","ev":"send","d":"fd=9 id=0x0a24 len=66"}
+{"t":1782979612848,"sub":"net","ev":"send","d":"fd=9 id=0x0a23 len=122"}
+{"t":1782979612848,"sub":"net","ev":"send","d":"fd=7 id=0x2b1d len=14"}
+{"t":1782979612848,"sub":"net","ev":"send","d":"fd=9 id=0x0ade len=6"}
+{"t":1782979613142,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x01d7 len=15"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0b08 len=6"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0b39 len=73"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0b0b len=4"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0a9b len=4"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x099b len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x09ff len=108"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x09ff len=108"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x09ff len=108"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x09ff len=108"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x09ff len=108"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x09ff len=108"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x09ff len=108"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0b32 len=19"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0b20 len=271"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0b20 len=271"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0acb len=12"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0acb len=12"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0acb len=12"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0acb len=12"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00bd len=44"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x013a len=4"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00be len=5"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00be len=5"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00be len=5"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00be len=5"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00be len=5"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x00be len=5"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x02c9 len=3"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x02da len=3"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x02d9 len=10"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x02d9 len=10"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x02d9 len=10"}
+{"t":1782979613335,"sub":"net","ev":"send","d":"fd=9 id=0x0b8d len=69"}
+{"t":1782979613335,"sub":"bonus","ev":"consume","d":"cid=150100 type=20000 val=7"}
+{"t":1782979613643,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979613794,"sub":"net","ev":"send","d":"fd=6 id=0x2714 len=6"}
+{"t":1782979613794,"sub":"net","ev":"send","d":"fd=7 id=0x2b00 len=6"}
+{"t":1782979613794,"sub":"net","ev":"send","d":"fd=8 id=0x2b23 len=2"}
+{"t":1782979613795,"sub":"net","ev":"send","d":"fd=7 id=0x2b24 len=2"}
+{"t":1782979614144,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979614335,"sub":"chat","ev":"send","d":"cid=150100 name=Testbot msg=hello SEAMREWRITE world"}
+{"t":1782979614335,"sub":"chat","ev":"rewrite","d":"cid=150100 msg=hello seam-ok"}
+{"t":1782979614335,"sub":"chat","ev":"deliver","d":"gid=2000100 msg=Testbot : hello seam-ok"}
+{"t":1782979614335,"sub":"net","ev":"send","d":"fd=9 id=0x008e len=28"}
+{"t":1782979614643,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979615151,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979615643,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979615835,"sub":"net","ev":"send","d":"fd=9 id=0x0b31 len=17"}
+{"t":1782979615835,"sub":"net","ev":"send","d":"fd=9 id=0x09fe len=107"}
+{"t":1782979615835,"sub":"net","ev":"send","d":"fd=9 id=0x0adf len=58"}
+{"t":1782979615835,"sub":"net","ev":"send","d":"fd=9 id=0x0080 len=7"}
+{"t":1782979615835,"sub":"net","ev":"send","d":"fd=9 id=0x09fe len=107"}
+{"t":1782979615835,"sub":"net","ev":"send","d":"fd=9 id=0x0adf len=58"}
+{"t":1782979615835,"sub":"net","ev":"send","d":"fd=9 id=0x0b1a len=29"}
+{"t":1782979615835,"sub":"combatrule","ev":"check","d":"src=2000100 tgt=110027951 flag=131072"}
+{"t":1782979615835,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979615835,"sub":"event","ev":"skill_use","d":"src=2000100 tgt=110027951 skill=5 lv=1"}
+{"t":1782979615835,"sub":"skill","ev":"ratio","d":"id=SM_BASH lv=1 ratio_pre=130"}
+{"t":1782979615835,"sub":"damage","ev":"final","d":"src=2000100 tgt=110027951 skill=5 lv=1 dmg=66 flag=273"}
+{"t":1782979615835,"sub":"net","ev":"send","d":"fd=9 id=0x01de len=33"}
+{"t":1782979615856,"sub":"mobai","ev":"tick","d":"gid=110027951 mob=1002"}
+{"t":1782979615942,"sub":"mobai","ev":"tick","d":"gid=110027951 mob=1002"}
+{"t":1782979616052,"sub":"mobai","ev":"tick","d":"gid=110027951 mob=1002"}
+{"t":1782979616142,"sub":"mobai","ev":"tick","d":"gid=110027951 mob=1002"}
+{"t":1782979616143,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979616243,"sub":"mobai","ev":"tick","d":"gid=110027951 mob=1002"}
+{"t":1782979616355,"sub":"mobai","ev":"tick","d":"gid=110027951 mob=1002"}
+{"t":1782979616425,"sub":"outcome","ev":"damage_taken","d":"src=2000100 tgt=110027951 hp=55 cur=55 lethal=1 skill=5"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x0977 len=14"}
+{"t":1782979616425,"sub":"event","ev":"mob_dead","d":"mob=1002 killer=2000100 type=0"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x0acb len=12"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x0acb len=12"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x0acb len=12"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979616425,"sub":"bonus","ev":"consume","d":"cid=150100 type=20000 val=7"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x0441 len=4"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x0b32 len=19"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x019b len=10"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x0acc len=18"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x0acc len=18"}
+{"t":1782979616425,"sub":"drop","ev":"rate","d":"killer=2000100 mob=1002 rate=7000"}
+{"t":1782979616425,"sub":"drop","ev":"rate","d":"killer=2000100 mob=1002 rate=100"}
+{"t":1782979616425,"sub":"drop","ev":"rate","d":"killer=2000100 mob=1002 rate=400"}
+{"t":1782979616425,"sub":"drop","ev":"rate","d":"killer=2000100 mob=1002 rate=1000"}
+{"t":1782979616425,"sub":"drop","ev":"rate","d":"killer=2000100 mob=1002 rate=500"}
+{"t":1782979616425,"sub":"drop","ev":"rate","d":"killer=2000100 mob=1002 rate=150"}
+{"t":1782979616425,"sub":"drop","ev":"rate","d":"killer=2000100 mob=1002 rate=20"}
+{"t":1782979616425,"sub":"drop","ev":"rate","d":"killer=2000100 mob=1002 rate=20"}
+{"t":1782979616425,"sub":"net","ev":"send","d":"fd=9 id=0x0a24 len=66"}
+{"t":1782979616642,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979616675,"sub":"net","ev":"send","d":"fd=9 id=0x0080 len=7"}
+{"t":1782979617143,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979617642,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979618143,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979618654,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979618654,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619157,"sub":"net","ev":"send","d":"fd=8 id=0x2afe len=4"}
+{"t":1782979619157,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x00b1 len=8"}
+{"t":1782979619478,"sub":"economy","ev":"zeny","d":"cid=150100 delta=5000 type=1024 bal=12000"}
+{"t":1782979619478,"sub":"log","ev":"zeny","d":"cid=150100 type=1024 src=0 amount=5000"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x0a24 len=66"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x0a24 len=66"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x0a24 len=66"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x0a24 len=66"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x008e len=36"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x00b1 len=8"}
+{"t":1782979619478,"sub":"economy","ev":"zeny","d":"cid=150100 delta=-2000 type=1024 bal=10000"}
+{"t":1782979619478,"sub":"log","ev":"zeny","d":"cid=150100 type=1024 src=0 amount=-2000"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x008e len=36"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x0983 len=29"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619478,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619478,"sub":"status","ev":"start","d":"gid=2000100 sc=30 val1=1 dur=60000"}
+{"t":1782979619642,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979619979,"sub":"status","ev":"end","d":"gid=2000100 sc=30 forced=1"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x0196 len=9"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x0141 len=14"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619979,"sub":"resource","ev":"itemheal","d":"cid=150100 item=0 hp=510 sp=102"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619979,"sub":"outcome","ev":"damage_taken","d":"src=0 tgt=2000100 hp=16 cur=40 lethal=0 skill=0"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979619979,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979620142,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979620642,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979620642,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979621151,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979621642,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979621982,"sub":"net","ev":"send","d":"fd=9 id=0x00b6 len=6"}
+{"t":1782979621982,"sub":"net","ev":"send","d":"fd=8 id=0x3004 len=25"}
+{"t":1782979621983,"sub":"net","ev":"send","d":"fd=6 id=0x2728 len=14"}
+{"t":1782979622143,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979622642,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979623142,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979623643,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979624142,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979624643,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979624643,"sub":"net","ev":"send","d":"fd=9 id=0x00b0 len=8"}
+{"t":1782979625142,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979625642,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979626142,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979626642,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979627151,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979627642,"sub":"regen","ev":"tick","d":"gid=2000100 flag=3"}
+{"t":1782979627797,"sub":"net","ev":"send","d":"fd=9 id=0x0081 len=3"}
+{"t":1782979627797,"sub":"net","ev":"send","d":"fd=8 id=0x2b1c len=14"}
+{"t":1782979627797,"sub":"net","ev":"send","d":"fd=8 id=0x2b2e len=9"}
+{"t":1782979627797,"sub":"net","ev":"send","d":"fd=8 id=0x308b len=46237"}
+{"t":1782979627797,"sub":"net","ev":"send","d":"fd=8 id=0x308b len=46237"}
+{"t":1782979627797,"sub":"net","ev":"send","d":"fd=8 id=0x2b01 len=8869"}
+{"t":1782979627797,"sub":"net","ev":"send","d":"fd=8 id=0x3063 len=296"}
+{"t":1782979627798,"sub":"net","ev":"send","d":"fd=6 id=0x272c len=6"}
+{"t":1782979627798,"sub":"net","ev":"send","d":"fd=6 id=0x2737 len=2"}
+{"t":1782979627808,"sub":"status","ev":"end","d":"gid=110017275 sc=662 forced=1"}
+{"t":1782979627808,"sub":"status","ev":"end","d":"gid=110017275 sc=658 forced=1"}
+{"t":1782979627808,"sub":"status","ev":"end","d":"gid=110017274 sc=661 forced=1"}
+{"t":1782979627808,"sub":"status","ev":"end","d":"gid=110017274 sc=658 forced=1"}
+{"t":1782979627808,"sub":"status","ev":"end","d":"gid=110017273 sc=660 forced=1"}
+{"t":1782979627808,"sub":"status","ev":"end","d":"gid=110017273 sc=658 forced=1"}
+{"t":1782979627808,"sub":"status","ev":"end","d":"gid=110017272 sc=659 forced=1"}
+{"t":1782979627808,"sub":"status","ev":"end","d":"gid=110017272 sc=658 forced=1"}
+{"t":1782979627810,"sub":"status","ev":"end","d":"gid=110025900 sc=177 forced=1"}
+{"t":1782979627810,"sub":"status","ev":"end","d":"gid=110025898 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025897 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025896 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025895 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025894 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025893 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025891 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025889 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025888 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025887 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025899 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025892 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024988 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024987 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024986 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024999 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024991 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024997 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024996 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024993 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024992 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024990 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024998 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024995 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110024994 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025653 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025650 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025654 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025651 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025649 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025646 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025655 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025652 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025648 sc=177 forced=1"}
+{"t":1782979627811,"sub":"status","ev":"end","d":"gid=110025647 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025644 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025643 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025642 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026354 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026353 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026352 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026351 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026350 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026349 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026348 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026347 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026346 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026345 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026341 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026343 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110026342 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025404 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025401 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025410 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025409 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025408 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025407 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025406 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025405 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025403 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025402 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025399 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025397 sc=177 forced=1"}
+{"t":1782979627812,"sub":"status","ev":"end","d":"gid=110025398 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026139 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026138 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026137 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026136 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026140 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026133 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026134 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026132 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026175 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026174 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026173 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026172 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026171 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026169 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026168 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110026167 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110025175 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110025174 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110025172 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110025169 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110025141 sc=177 forced=1"}
+{"t":1782979627813,"sub":"status","ev":"end","d":"gid=110025140 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025139 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025138 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025137 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025176 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025173 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025170 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025168 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025135 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025134 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025133 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025717 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025716 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025714 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025713 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025715 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025711 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025710 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025709 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025748 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025752 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025751 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025750 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025749 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025746 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025745 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025744 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025227 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025226 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025225 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025224 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025223 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025262 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025261 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025259 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025258 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025256 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025254 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025260 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025255 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025221 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025219 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025220 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025507 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025506 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025501 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025500 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025505 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025504 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025503 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025499 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025470 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025472 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025469 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025468 sc=177 forced=1"}
+{"t":1782979627814,"sub":"status","ev":"end","d":"gid=110025466 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025465 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025464 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025471 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025543 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025542 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025560 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025559 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025805 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025804 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025788 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025787 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025298 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025297 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025315 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025314 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025963 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025964 sc=177 forced=1"}
+{"t":1782979627815,"sub":"status","ev":"end","d":"gid=110025946 sc=177 forced=1"}
+{"t":1782979627816,"sub":"status","ev":"end","d":"gid=110025947 sc=177 forced=1"}
+{"t":1782979627816,"sub":"status","ev":"end","d":"gid=110026075 sc=177 forced=1"}
+{"t":1782979627816,"sub":"status","ev":"end","d":"gid=110026076 sc=177 forced=1"}
+{"t":1782979627816,"sub":"status","ev":"end","d":"gid=110026093 sc=177 forced=1"}
+{"t":1782979627816,"sub":"status","ev":"end","d":"gid=110026092 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027843 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027842 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027859 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027858 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027428 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027429 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027445 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027444 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027291 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027290 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027307 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027306 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027583 sc=177 forced=1"}
+{"t":1782979627836,"sub":"status","ev":"end","d":"gid=110027582 sc=177 forced=1"}
+{"t":1782979627837,"sub":"status","ev":"end","d":"gid=110027567 sc=177 forced=1"}
+{"t":1782979627837,"sub":"status","ev":"end","d":"gid=110027566 sc=177 forced=1"}
+{"t":1782979627837,"sub":"status","ev":"end","d":"gid=110027704 sc=177 forced=1"}
+{"t":1782979627837,"sub":"status","ev":"end","d":"gid=110027705 sc=177 forced=1"}
+{"t":1782979627837,"sub":"status","ev":"end","d":"gid=110027721 sc=177 forced=1"}
+{"t":1782979627837,"sub":"status","ev":"end","d":"gid=110027720 sc=177 forced=1"}
+{"t":1782979627849,"sub":"net","ev":"send","d":"fd=8 id=0x2b18 len=2"}

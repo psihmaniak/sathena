@@ -7,8 +7,7 @@
 // [SATHENA-SEAM interface] CombatRuleSeam — the "can src attack target" decision. onCheckTarget
 // fires at the top of battle_check_target; return true to OVERRIDE the result (out = the
 // battle_check_target return value: 1 allow / 0 or -1 deny), false to fall through to vanilla.
-// Powers dynamic per-player killability (assassin contracts), custom PVP rules, area/faction
-// gates — the rule state is DATA (char register / table) read in the consumer. Default = vanilla.
+// Default = vanilla.
 
 #include "../common/cbasetypes.hpp"   // int32
 

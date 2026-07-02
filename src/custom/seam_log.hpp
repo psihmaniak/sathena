@@ -6,10 +6,8 @@
 
 // [SATHENA-SEAM interface] LogSeam — the audit-stream tap. Each hook fires at the TOP of the
 // matching log_* function, BEFORE the enable_logs / sql_logs gate, so a consumer receives
-// every event and can funnel structured records elsewhere (bus → ClickHouse; the item
-// unique_id in log_pick is the forensic correlation key) INDEPENDENTLY of whether the vanilla
-// SQL/file sink is on. Default no-op => the vanilla sink runs as configured, unchanged.
-// Hooks are added per log_* as needed; log_pick + log_zeny are the highest-value first cut.
+// every event INDEPENDENTLY of whether the vanilla SQL/file sink is on. Default no-op => the
+// vanilla sink runs as configured, unchanged. Hooks are added per log_* as needed.
 
 #include "../common/cbasetypes.hpp"   // int32 / int16 / uint32
 

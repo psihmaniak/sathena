@@ -6,9 +6,7 @@
 
 // [SATHENA-SEAM interface] CombatOutcomeSeam — the applied-damage choke (status_damage), the
 // last word before HP is deducted. onDamageTaken sees the FINAL hp about to be removed (already
-// capped to cur_hp, so hp >= cur_hp means this blow is lethal) and can mutate it in place:
-// overkill/damage-band clamp (§J), HP-floor / no-death + resurrect-SC (lethal intercept), and
-// on-damage-TAKEN reactive triggers (§F: Kaahi, counter, life-tap) key off the same point.
+// capped to cur_hp, so hp >= cur_hp means this blow is lethal) and can mutate it in place.
 // Default no-op => vanilla. (This is the applier; the battle_calc pipeline is DamageSeam.)
 
 #include "../common/cbasetypes.hpp"   // int32 / uint16
