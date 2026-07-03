@@ -8,6 +8,8 @@
 #ifdef SATHENA
 // [SATHENA-SEAM] ContentSeam interface — consumed by the onLogNpc/onLogNpcData hooks at the top of log_npc.
 #include <custom/seam_content.hpp>
+// [SATHENA-SEAM] FollowerSeam interface — consumed by the onLogFeeding hook in log_feeding.
+#include <custom/seam_follower.hpp>
 #endif
 
 #include <common/cbasetypes.hpp>
@@ -544,6 +546,11 @@ void log_feeding( const map_session_data* sd, e_log_feeding_type type, t_itemid 
 	uint16 target_class = 0;
 
 	nullpo_retv( sd );
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogFeeding — tap before the config gate.
+	follower_seam()->onLogFeeding( *sd, type, nameid );
+#endif
 
 	if (!(log_config.feeding&type))
 		return;
