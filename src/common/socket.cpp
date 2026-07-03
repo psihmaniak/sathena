@@ -48,7 +48,7 @@
 #include "timer.hpp"
 
 #ifdef SATHENA
-// [SATHENA-SEAM] NetSeam interface — consumed by the onPacketSend hook in WFIFOSET below.
+// [SATHENA-SEAM] AuthSeam interface — consumed by the onPacketSend hook in WFIFOSET below.
 #include <custom/seam_auth.hpp>
 #endif
 
@@ -874,7 +874,7 @@ int32 WFIFOSET(int32 fd, size_t len)
 	}
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] NetSeam.onPacketSend — the ONE egress choke: every outgoing packet
+	// [SATHENA-SEAM] AuthSeam.onPacketSend — the ONE egress choke: every outgoing packet
 	// (client AND inter-server) passes WFIFOSET exactly once. PLACEMENT: after every
 	// validation/drop path above, immediately before the packet is committed to the write
 	// FIFO — buf points at the packet start (id = first 2 bytes, little-endian). If

@@ -4218,7 +4218,7 @@ int32 skill_castend_damage_id (block_list* src, block_list *bl, uint16 skill_id,
 		return 1;
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] EventSeam.onSkillUse — a damage skill is landing on bl. PLACEMENT: after
+	// [SATHENA-SEAM] BattleSeam.onSkillUse — a damage skill is landing on bl. PLACEMENT: after
 	// the entry validity guards (src/bl valid + same map + on-map), before the skill switch,
 	// so the consumer observes every applied damage-skill with caster+target live.
 	battle_seam()->onSkillUse( src, bl, skill_id, skill_lv );
@@ -4416,7 +4416,7 @@ int32 skill_castend_nodamage_id (block_list *src, block_list *bl, uint16 skill_i
 		return 1;
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] EventSeam.onSkillUse — a no-damage skill is landing on bl. PLACEMENT:
+	// [SATHENA-SEAM] BattleSeam.onSkillUse — a no-damage skill is landing on bl. PLACEMENT:
 	// mirrors the damage_id hook — after the same-map guard, before the skill switch.
 	battle_seam()->onSkillUse( src, bl, skill_id, skill_lv );
 #endif
@@ -10417,7 +10417,7 @@ int32 skill_vfcastfix(block_list *bl, double time, uint16 skill_id, uint16 skill
 	time = max((int32)time, 0) + (1 - (float)min(fixcast_r, 100) / 100) * max(fixed, 0); //Underflow checking/capping
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] FormulaSeam.onCastTime — the computed cast time. PLACEMENT: the return of
+	// [SATHENA-SEAM] SkillSeam.onCastTime — the computed cast time. PLACEMENT: the return of
 	// skill_vfcastfix, result captured and passed by reference to be mutated before it is returned.
 	int32 cast_time = (int32)time;
 	skill_seam()->onCastTime( bl, cast_time, skill_id, skill_lv );
@@ -10540,7 +10540,7 @@ int32 skill_delayfix(block_list *bl, uint16 skill_id, uint16 skill_lv)
 	//ShowInfo("Delay delayfix = %f\n",time);
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] FormulaSeam.onSkillDelay — the computed after-cast delay. PLACEMENT: the
+	// [SATHENA-SEAM] SkillSeam.onSkillDelay — the computed after-cast delay. PLACEMENT: the
 	// return of skill_delayfix, result captured and passed by reference to be mutated before return.
 	int32 delay_final = max((int32)time,0);
 	skill_seam()->onSkillDelay( bl, delay_final, skill_id, skill_lv );

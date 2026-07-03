@@ -1872,7 +1872,7 @@ static bool mob_ai_sub_hard(mob_data *md, t_tick tick)
 	}
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] MobAISeam.onAiTick — per-mob AI override. PLACEMENT: after the vanilla
+	// [SATHENA-SEAM] MobSeam.onAiTick — per-mob AI override. PLACEMENT: after the vanilla
 	// "skip thinking" early-outs (alive/thinktime/stun) and BEFORE the skill+target cascade,
 	// so a consumer's threat/positional AI replaces this tick (return true) or falls through
 	// to vanilla (false). Opt-in keyed in the consumer (mob_id/side-table), no struct field.
@@ -2901,7 +2901,7 @@ int32 mob_getdroprate(block_list *src, std::shared_ptr<s_mob_db> mob, int32 base
 	}
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] DropSeam.onDropRate — final per-context drop-rate decision. PLACEMENT:
+	// [SATHENA-SEAM] EconomySeam.onDropRate — final per-context drop-rate decision. PLACEMENT:
 	// the single return of mob_getdroprate, which every drop rate (regular/card/loot) flows
 	// through; consumer adjusts the rate by killer(src)/mob context (event mult, punishment).
 	economy_seam()->onDropRate( src, md, drop_rate );
@@ -2972,7 +2972,7 @@ int32 mob_dead(mob_data *md, block_list *src, int32 type)
 	status = &md->status;
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] EventSeam.onMobDead — the kill choke. PLACEMENT: top of mob_dead (the
+	// [SATHENA-SEAM] BattleSeam.onMobDead — the kill choke. PLACEMENT: top of mob_dead (the
 	// death handler; no death-aborting early return precedes this), after locals are set and
 	// BEFORE the dead-skill / exp / drop processing, so a consumer sees every kill with the
 	// killer(src) identified and can act before rewards are distributed.

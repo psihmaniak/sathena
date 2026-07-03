@@ -7,7 +7,7 @@
 #include <cstdlib>
 
 #ifdef SATHENA
-// [SATHENA-SEAM] DamageSeam interface — consumed by the staged damage hooks (FINAL choke
+// [SATHENA-SEAM] BattleSeam interface — consumed by the staged damage hooks (FINAL choke
 // wired in battle_calc_damage; earlier stage boundaries added as needed).
 #include <custom/seam_battle.hpp>
 #endif
@@ -2068,7 +2068,7 @@ int64 battle_calc_damage(block_list *src,block_list *bl,struct Damage *d,int64 d
 	}
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] DamageSeam FINAL stage — the applied-damage choke. PLACEMENT: the
+	// [SATHENA-SEAM] BattleSeam FINAL stage — the applied-damage choke. PLACEMENT: the
 	// terminal return of battle_calc_damage, after every vanilla reduction/block, so the
 	// consumer has the last word on the number with both attacker(src)+target(bl) SC live.
 	// Shared by weapon (here) / magic / misc via this same function. If upstream adds a
@@ -7893,7 +7893,7 @@ int32 battle_check_target( const block_list* src, const block_list* target, int3
 	nullpo_ret(target);
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] CombatRuleSeam.onCheckTarget — override the can-attack decision.
+	// [SATHENA-SEAM] BattleSeam.onCheckTarget — override the can-attack decision.
 	// PLACEMENT: top of battle_check_target after the nullpo guards, before any vanilla
 	// state logic; a true return short-circuits with the consumer's verdict (contracts,
 	// custom PVP rules, area/faction gates), false = vanilla. Single choke for all callers.

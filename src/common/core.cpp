@@ -30,7 +30,7 @@
 #include "strlib.hpp"
 
 #ifdef SATHENA
-// [SATHENA-SEAM] BootSeam interface — consumed by the onServerBoot hook in Core::start below.
+// [SATHENA-SEAM] ContentSeam interface — consumed by the onServerBoot hook in Core::start below.
 #include <custom/seam_content.hpp>
 #endif
 
@@ -387,7 +387,7 @@ int32 Core::start( int32 argc, char **argv ){
 		this->set_status( e_core_status::SERVER_INITIALIZED );
 
 #ifdef SATHENA
-		// [SATHENA-SEAM] BootSeam.onServerBoot — the ONE shared post-init hook for every
+		// [SATHENA-SEAM] ContentSeam.onServerBoot — the ONE shared post-init hook for every
 		// server type (login/char/map/tool/web). PLACEMENT: Core::start(), immediately after
 		// the subclass' initialize() succeeded and status became SERVER_INITIALIZED — all
 		// DBs/scripts/config are loaded, nothing is being served yet. If upstream refactors

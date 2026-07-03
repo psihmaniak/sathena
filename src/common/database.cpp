@@ -11,7 +11,7 @@
 #include "utilities.hpp"
 
 #ifdef SATHENA
-// [SATHENA-SEAM] BootSeam interface — consumed by the onDatabaseLoad hook in load() below.
+// [SATHENA-SEAM] ContentSeam interface — consumed by the onDatabaseLoad hook in load() below.
 #include <custom/seam_content.hpp>
 #endif
 
@@ -84,7 +84,7 @@ bool YamlDatabase::load(){
 	bool ret = this->load( this->getDefaultLocation() );
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] BootSeam.onDatabaseLoad — the content-load extension point: fires in the
+	// [SATHENA-SEAM] ContentSeam.onDatabaseLoad — the content-load extension point: fires in the
 	// shared no-arg load() every YAML DB dispatcher (and reload()) goes through, AFTER the
 	// default location loaded and BEFORE loadingFinished(), so consumer-merged files land
 	// last (their entries win field-by-field) and cross-referencing still runs exactly once.

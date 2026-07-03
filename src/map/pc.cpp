@@ -10848,7 +10848,7 @@ int32 pc_itemheal(map_session_data *sd, t_itemid itemid, int32 hp, int32 sp)
 	}
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] ResourceSeam.onItemHeal — final HP/SP heal adjustment. PLACEMENT: end of
+	// [SATHENA-SEAM] CharacterSeam.onItemHeal — final HP/SP heal adjustment. PLACEMENT: end of
 	// pc_itemheal, after every vanilla heal-rate bonus, before status_heal applies it; hp/sp
 	// are mutable (item-heal-% from a custom SC, HP<->SP convert, consumable rework).
 	character_seam()->onItemHeal( sd, itemid, hp, sp );

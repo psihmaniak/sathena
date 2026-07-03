@@ -76,7 +76,7 @@ public:
 	bool reload();
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] consumer entry paired with BootSeam.onDatabaseLoad: merge an additional
+	// [SATHENA-SEAM] consumer entry paired with ContentSeam.onDatabaseLoad: merge an additional
 	// file on top of the default location (loaded last -> its entries win field-by-field).
 	// A public wrapper because load(path) is deliberately private upstream.
 	bool loadExtra( const std::string& path ){

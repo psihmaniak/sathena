@@ -110,7 +110,7 @@ void vending_vendinglistreq(map_session_data* sd, int32 id)
 static double vending_calc_tax(map_session_data *sd, double zeny)
 {
 #ifdef SATHENA
-	// [SATHENA-SEAM] VendingFeeSeam.onVendingTax — resolve the vanilla rate (basis points) into a
+	// [SATHENA-SEAM] EconomySeam.onVendingTax — resolve the vanilla rate (basis points) into a
 	// local, pass it by reference for the consumer to mutate, then apply. PLACEMENT: replaces the
 	// inline apply so the rate is a single mutable value. Default no-op => vanilla rate.
 	double rate = (battle_config.vending_tax && zeny >= battle_config.vending_tax_min) ? (double)battle_config.vending_tax : 0.;

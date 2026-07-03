@@ -184,7 +184,7 @@ void log_branch( map_session_data* sd )
 	nullpo_retv(sd);
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] LogSeam.onLogBranch — tap before the config gate.
+	// [SATHENA-SEAM] EconomySeam.onLogBranch — tap before the config gate.
 	economy_seam()->onLogBranch( *sd );
 #endif
 
@@ -223,7 +223,7 @@ void log_pick( int32 id, int16 m, e_log_pick_type type, int32 amount, const item
 	nullpo_retv(itm);
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] LogSeam.onLogPick — tap item flow BEFORE the enable_logs gate, so the
+	// [SATHENA-SEAM] EconomySeam.onLogPick — tap item flow BEFORE the enable_logs gate, so the
 	// consumer funnels every pick/drop/trade (with the item unique_id) regardless of the
 	// vanilla sink config. PLACEMENT: after nullpo, before the enable_logs early-return.
 	economy_seam()->onLogPick( id, m, type, amount, itm );
@@ -299,7 +299,7 @@ void log_pick_mob( const mob_data* md, e_log_pick_type type, int32 amount, const
 void log_zeny( const map_session_data &target_sd, e_log_pick_type type, uint32 src_id, int32 amount )
 {
 #ifdef SATHENA
-	// [SATHENA-SEAM] LogSeam.onLogZeny — tap zeny flow BEFORE the config gate.
+	// [SATHENA-SEAM] EconomySeam.onLogZeny — tap zeny flow BEFORE the config gate.
 	economy_seam()->onLogZeny( target_sd, type, src_id, amount );
 #endif
 
@@ -337,7 +337,7 @@ void log_mvpdrop( const map_session_data* sd, int32 monster_id, t_itemid nameid,
 	nullpo_retv(sd);
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] LogSeam.onLogMvpdrop — tap before the config gate.
+	// [SATHENA-SEAM] EconomySeam.onLogMvpdrop — tap before the config gate.
 	economy_seam()->onLogMvpdrop( *sd, monster_id, nameid, exp );
 #endif
 
@@ -375,7 +375,7 @@ void log_atcommand( map_session_data* sd, const char* message )
 	nullpo_retv(sd);
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] LogSeam.onLogAtcommand — tap before the commands/should-log gate.
+	// [SATHENA-SEAM] SessionSeam.onLogAtcommand — tap before the commands/should-log gate.
 	session_seam()->onLogAtcommand( *sd, message );
 #endif
 
@@ -416,7 +416,7 @@ void log_npc( npc_data* nd, const char* message ){
 	nullpo_retv(nd);
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] LogSeam.onLogNpcData — tap before the config gate.
+	// [SATHENA-SEAM] ContentSeam.onLogNpcData — tap before the config gate.
 	content_seam()->onLogNpcData( *nd, message );
 #endif
 
@@ -457,7 +457,7 @@ void log_npc( map_session_data* sd, const char* message )
 	nullpo_retv(sd);
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] LogSeam.onLogNpc — tap before the config gate.
+	// [SATHENA-SEAM] ContentSeam.onLogNpc — tap before the config gate.
 	content_seam()->onLogNpc( *sd, message );
 #endif
 
@@ -497,7 +497,7 @@ void log_npc( map_session_data* sd, const char* message )
 void log_chat( e_log_chat_type type, int32 type_id, int32 src_charid, int32 src_accid, const char* mapname, int32 x, int32 y, const char* dst_charname, const char* message )
 {
 #ifdef SATHENA
-	// [SATHENA-SEAM] LogSeam.onLogChat — tap before the chat-type/woe gate (dst_charname may be null here).
+	// [SATHENA-SEAM] ChatSeam.onLogChat — tap before the chat-type/woe gate (dst_charname may be null here).
 	chat_seam()->onLogChat( type, type_id, src_charid, src_accid, mapname, x, y, dst_charname, message );
 #endif
 
@@ -547,7 +547,7 @@ void log_cash( const map_session_data* sd, e_log_pick_type type, e_log_cash_type
 	nullpo_retv( sd );
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] LogSeam.onLogCash — tap before the config gate.
+	// [SATHENA-SEAM] EconomySeam.onLogCash — tap before the config gate.
 	economy_seam()->onLogCash( *sd, type, cash_type, amount );
 #endif
 
@@ -588,7 +588,7 @@ void log_feeding( const map_session_data* sd, e_log_feeding_type type, t_itemid 
 	nullpo_retv( sd );
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] LogSeam.onLogFeeding — tap before the config gate.
+	// [SATHENA-SEAM] FollowerSeam.onLogFeeding — tap before the config gate.
 	follower_seam()->onLogFeeding( *sd, type, nameid );
 #endif
 

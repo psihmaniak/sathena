@@ -23,7 +23,7 @@
 #include "loginlog.hpp"
 
 #ifdef SATHENA
-// [SATHENA-SEAM] LoginSessionSeam interface — consumed by the dup-login hook below.
+// [SATHENA-SEAM] AuthSeam interface — consumed by the dup-login hook below.
 #include <custom/seam_auth.hpp>
 #endif
 

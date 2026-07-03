@@ -46,9 +46,9 @@
 #include "navi.hpp"
 #include "npc.hpp"
 #ifdef SATHENA
-// [SATHENA-SEAM] NpcSeam interface — consumed by the onRegisterScripts hook in do_init.
+// [SATHENA-SEAM] ContentSeam interface — consumed by the onRegisterScripts hook in do_init.
 #include <custom/seam_content.hpp>
-// [SATHENA-SEAM] MapShardSeam interface — consumed by the keepMap hook in map_addmap.
+// [SATHENA-SEAM] SessionSeam interface — consumed by the keepMap hook in map_addmap.
 #include <custom/seam_session.hpp>
 #endif
 #include "party.hpp"
@@ -3746,7 +3746,7 @@ int32 map_addmap(char* mapname)
 	}
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] MapShardSeam.keepMap — drop maps not assigned to this shard instance.
+	// [SATHENA-SEAM] SessionSeam.keepMap — drop maps not assigned to this shard instance.
 	// PLACEMENT: top of map_addmap (after "clear"), before the map is registered, so a
 	// dropped map never enters the list / loads its cache. Default keeps all.
 	if( !session_seam()->keepMap( mapname ) )
@@ -5391,7 +5391,7 @@ bool MapServer::initialize( int32 argc, char *argv[] ){
 	map_reloadnpc(false);
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] NpcSeam.onRegisterScripts — register consumer scripts on top of the
+	// [SATHENA-SEAM] ContentSeam.onRegisterScripts — register consumer scripts on top of the
 	// vanilla file list. PLACEMENT: after map_reloadnpc() built npc_src_files (the
 	// scripts_main.conf chain) and BEFORE do_init_npc() parses them, so consumer
 	// npc_addsrcfile()/npc_delsrcfile() calls land in the same parse pass. If upstream

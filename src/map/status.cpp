@@ -1541,7 +1541,7 @@ int32 status_damage(block_list *src,block_list *target,int64 dhp, int64 dsp, int
 	}
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] CombatOutcomeSeam.onDamageTaken — applied-damage choke. PLACEMENT: after
+	// [SATHENA-SEAM] BattleSeam.onDamageTaken — applied-damage choke. PLACEMENT: after
 	// hp is capped to current HP (so hp >= status->hp == lethal), before it is deducted; the
 	// consumer clamps/bands the number, applies an HP-floor / resurrect (leave hp < status->hp
 	// to survive), or fires on-damage-taken reactive triggers. hp is mutable in place.
@@ -6527,7 +6527,7 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 		status_calc_regen_rate(&bl, status_get_regen_data(&bl), sc);
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] FormulaSeam.onStatusCalc — every stat field recomputed. PLACEMENT: the tail
+	// [SATHENA-SEAM] CharacterSeam.onStatusCalc — every stat field recomputed. PLACEMENT: the tail
 	// of status_calc_bl_main, after the regen recalcs and before return, bl passed by reference.
 	character_seam()->onStatusCalc( bl );
 #endif
@@ -13373,7 +13373,7 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 		npc_touchnext_areanpc(sd,false); // Run OnTouch_ on next char in range
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] StatusSeam.onStatusStart — an SC has been committed. PLACEMENT: the
+	// [SATHENA-SEAM] CharacterSeam.onStatusStart — an SC has been committed. PLACEMENT: the
 	// success tail of status_change_start_post_delay (where the sce is created, all
 	// early-outs/resists passed), so a consumer reacts to a live SC: ensemble mutex,
 	// on-inflict mirror, umbrella-immunity. `tick` is the applied duration.
@@ -13478,7 +13478,7 @@ int32 status_change_end( block_list* bl, enum sc_type type, int32 tid ){
 			return 0;
 
 #ifdef SATHENA
-		// [SATHENA-SEAM] StatusSeam.onStatusEnd — veto removal (return false) for dispel/death
+		// [SATHENA-SEAM] CharacterSeam.onStatusEnd — veto removal (return false) for dispel/death
 		// policy (NoDispel / NoRemoveOnDead). PLACEMENT: after the stale-timer guard, before
 		// removal. `forced` = tid == INVALID_TIMER (dispel/death/manual) vs a natural timer
 		// expiry, so a consumer scopes its veto to forced ends and never freezes a timer.
@@ -15503,7 +15503,7 @@ static int32 status_natural_heal(block_list* bl, va_list args)
 		return 0;
 
 #ifdef SATHENA
-	// [SATHENA-SEAM] RegenSeam.onRegenTick — rework regen amounts/rates per tick. PLACEMENT:
+	// [SATHENA-SEAM] CharacterSeam.onRegenTick — rework regen amounts/rates per tick. PLACEMENT:
 	// after the regen_data is fetched, BEFORE its flag/rates are read below, so a consumer's
 	// edits to regen->flag / regen->rate take effect this tick. Intervals are conf, not here.
 	character_seam()->onRegenTick( bl, regen );
