@@ -3,8 +3,8 @@
 
 #include "mob.hpp"
 #ifdef SATHENA
-// [SATHENA-SEAM] EventSeam interface — consumed by the onMobDead hook in mob_dead.
 #include <custom/seam_battle.hpp>
+#include <custom/seam_mob.hpp>
 #endif
 
 #include <algorithm>
@@ -1869,6 +1869,15 @@ static bool mob_ai_sub_hard(mob_data *md, t_tick tick)
 		md->target_id = md->attacked_id = md->norm_attacked_id = 0;
 		return false;
 	}
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] MobAISeam.onAiTick — per-mob AI override. PLACEMENT: after the vanilla
+	// "skip thinking" early-outs (alive/thinktime/stun) and BEFORE the skill+target cascade,
+	// so a consumer's threat/positional AI replaces this tick (return true) or falls through
+	// to vanilla (false). Opt-in keyed in the consumer (mob_id/side-table), no struct field.
+	if( mob_seam()->onAiTick( md, tick ) )
+		return true;
+#endif
 
 	// Before a monster processes its AI, it will check for a skill
 	// It it uses a skill it will not process its AI further until the next interval
