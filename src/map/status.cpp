@@ -4,9 +4,8 @@
 #include "status.hpp"
 
 #ifdef SATHENA
-// [SATHENA-SEAM] StatusSeam interface — consumed by onStatusStart (end of status_change_start)
-// and the onStatusEnd veto (in status_change_end).
 #include <custom/seam_character.hpp>
+#include <custom/seam_battle.hpp>
 #endif
 
 #include <cmath>
@@ -1540,6 +1539,14 @@ int32 status_damage(block_list *src,block_list *target,int64 dhp, int64 dsp, int
 		if (flag&2) return 0;
 		hp = status->hp;
 	}
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] CombatOutcomeSeam.onDamageTaken — applied-damage choke. PLACEMENT: after
+	// hp is capped to current HP (so hp >= status->hp == lethal), before it is deducted; the
+	// consumer clamps/bands the number, applies an HP-floor / resurrect (leave hp < status->hp
+	// to survive), or fires on-damage-taken reactive triggers. hp is mutable in place.
+	battle_seam()->onDamageTaken( src, target, hp, (int32)status->hp, flag, skill_id );
+#endif
 
 	if ((uint32)sp > status->sp) {
 		if (flag&2) return 0;

@@ -3625,6 +3625,12 @@
 	export_constant(ATF_WEAPON);
 	export_constant(ATF_MAGIC);
 	export_constant(ATF_MISC);
+#ifdef SATHENA
+	// [SATHENA-SEAM] script export of the two gate flags (map.hpp auto_trigger_flag), guarded to
+	// match their #ifdef SATHENA definition; mirrors the other ATF_ exports above.
+	export_constant(ATF_NORMALONLY);
+	export_constant(ATF_SKILLONLY);
+#endif
 	// TODO: Check why this was in const.yml, but not on source side
 	export_constant2("ATF_SKILL",ATF_MAGIC|ATF_MISC);
 

@@ -7,8 +7,8 @@
 #include <cmath>
 
 #ifdef SATHENA
-// [SATHENA-SEAM] FormulaSeam interface — consumed by onCastTime (skill_vfcastfix) and onSkillDelay (skill_delayfix).
 #include <custom/seam_skill.hpp>
+#include <custom/seam_battle.hpp>
 #endif
 #include <cstdio>
 #include <cstdlib>
@@ -1295,6 +1295,16 @@ int32 skill_additional_effect( block_list* src, block_list *bl, uint16 skill_id,
 						continue; //Range Failed.
 				}
 
+#ifdef SATHENA
+				// [SATHENA-SEAM] ATF_NORMALONLY / ATF_SKILLONLY gate — skip the effect unless the
+				// attack matches BF_NORMAL / BF_SKILL respectively. PLACEMENT: after the range filter,
+				// before the SELF/TARGET apply. Unset flags => vanilla (no gate).
+				if ((it.flag&ATF_NORMALONLY) && !(attack_type&BF_NORMAL))
+					continue;
+				if ((it.flag&ATF_SKILLONLY) && !(attack_type&BF_SKILL))
+					continue;
+#endif
+
 				if (it.flag&ATF_TARGET)
 					status_change_start(src, bl, it.sc, rate, 7, 0, 0, 0, it.duration, SCSTART_NONE, 100);
 				if (it.flag&ATF_SELF)
@@ -1732,6 +1742,16 @@ int32 skill_counter_additional_effect (block_list* src, block_list *bl, uint16 s
 					(it.flag&ATF_SHORT && !(attack_type&BF_SHORT)))
 					continue; //Range Failed.
 			}
+
+#ifdef SATHENA
+			// [SATHENA-SEAM] ATF_NORMALONLY / ATF_SKILLONLY gate — skip the effect unless the attack
+			// matches BF_NORMAL / BF_SKILL respectively. PLACEMENT: after the range filter, before the
+			// SELF/TARGET apply. Unset flags => vanilla (no gate).
+			if ((it.flag&ATF_NORMALONLY) && !(attack_type&BF_NORMAL))
+				continue;
+			if ((it.flag&ATF_SKILLONLY) && !(attack_type&BF_SKILL))
+				continue;
+#endif
 
 			if (it.flag&ATF_TARGET && src != bl)
 				status_change_start(src, src, it.sc, rate, 7, 0, 0, 0, it.duration, SCSTART_NONE, 100);
@@ -4197,6 +4217,13 @@ int32 skill_castend_damage_id (block_list* src, block_list *bl, uint16 skill_id,
 	if (bl->prev == nullptr)
 		return 1;
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] EventSeam.onSkillUse — a damage skill is landing on bl. PLACEMENT: after
+	// the entry validity guards (src/bl valid + same map + on-map), before the skill switch,
+	// so the consumer observes every applied damage-skill with caster+target live.
+	battle_seam()->onSkillUse( src, bl, skill_id, skill_lv );
+#endif
+
 	sd = BL_CAST(BL_PC, src);
 
 	if (status_isdead(*bl))
@@ -4387,6 +4414,12 @@ int32 skill_castend_nodamage_id (block_list *src, block_list *bl, uint16 skill_i
 
 	if (src->m != bl->m)
 		return 1;
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] EventSeam.onSkillUse — a no-damage skill is landing on bl. PLACEMENT:
+	// mirrors the damage_id hook — after the same-map guard, before the skill switch.
+	battle_seam()->onSkillUse( src, bl, skill_id, skill_lv );
+#endif
 
 	sd = BL_CAST(BL_PC, src);
 	hd = BL_CAST(BL_HOM, src);
