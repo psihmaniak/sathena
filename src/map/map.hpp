@@ -1224,6 +1224,7 @@ int32 map_eraseipport(uint16 map, uint32 ip, uint16 port);
 int32 map_eraseallipport(void);
 void map_addiddb(block_list *);
 void map_deliddb(block_list *bl);
+void map_reassign_object_id(block_list *bl, int32 new_id);
 void map_foreachpc(int32 (*func)(map_session_data* sd, va_list args), ...);
 void map_foreachmob(int32 (*func)(mob_data* md, va_list args), ...);
 void map_foreachnpc(int32 (*func)(npc_data* nd, va_list args), ...);

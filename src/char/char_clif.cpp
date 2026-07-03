@@ -22,6 +22,8 @@
 #include <common/utilities.hpp>
 #include <common/utils.hpp>
 
+#include <custom/seam_session.hpp>
+
 #include "char.hpp"
 #include "char_logif.hpp"
 #include "char_mapif.hpp"
@@ -600,6 +602,15 @@ bool chclif_parse_char_delete2_req( int32 fd, char_session_data& sd ){
 		return true;
 	}
 
+#ifdef SATHENA
+	// a consumer may forbid deleting this character for this session
+	if( !session_seam()->actionAllowed( sd.account_id, char_id, SEAM_ACTION_CHAR_DELETE ) ){
+		chclif_char_delete2_ack( fd, char_id, 3, 0 );
+
+		return true;
+	}
+#endif
+
 	if( SQL_SUCCESS != Sql_Query( sql_handle, "SELECT `delete_date`,`party_id`,`guild_id` FROM `%s` WHERE `char_id`='%d'", schema_config.char_db, char_id ) ){
 		Sql_ShowDebug( sql_handle );
 		chclif_char_delete2_ack( fd, char_id, 3, 0 );
@@ -1087,18 +1098,25 @@ bool chclif_parse_charselect( int32 fd, struct char_session_data& sd ){
 	int slot = p->slot;
 	char* data;
 
-	if ( SQL_SUCCESS != Sql_Query(sql_handle, "SELECT `char_id` FROM `%s` WHERE `account_id`='%d' AND `char_num`='%d' AND `delete_date` = 0", schema_config.char_db, sd.account_id, slot)
-		|| SQL_SUCCESS != Sql_NextRow(sql_handle)
-		|| SQL_SUCCESS != Sql_GetData(sql_handle, 0, &data, NULL) )
-	{	//Not found?? May be forged packet.
-		Sql_ShowDebug(sql_handle);
-		Sql_FreeResult(sql_handle);
+	uint32 char_id = 0;
+
+	if ( SQL_SUCCESS == Sql_Query(sql_handle, "SELECT `char_id` FROM `%s` WHERE `account_id`='%d' AND `char_num`='%d' AND `delete_date` = 0", schema_config.char_db, sd.account_id, slot)
+		&& SQL_SUCCESS == Sql_NextRow(sql_handle)
+		&& SQL_SUCCESS == Sql_GetData(sql_handle, 0, &data, NULL) )
+	{
+		char_id = atoi(data);
+	}
+	Sql_FreeResult(sql_handle);
+
+#ifdef SATHENA
+	// a consumer may resolve a selectable character not covered by the account's own list
+	char_id = session_seam()->resolveSelectedChar( sd, slot, char_id );
+#endif
+
+	if( char_id == 0 ){	//Not found?? May be forged packet.
 		chclif_reject(fd, 0); // rejected from server
 		return 1;
 	}
-
-	uint32 char_id = atoi(data);
-	Sql_FreeResult(sql_handle);
 
 	// Prevent select a char while retrieving guild bound items
 	if (sd.flag&1) {

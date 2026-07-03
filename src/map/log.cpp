@@ -11,6 +11,7 @@
 #include <custom/seam_follower.hpp>
 #include <custom/seam_chat.hpp>
 #include <custom/seam_economy.hpp>
+#include <custom/seam_session.hpp>
 #endif
 
 #include <common/cbasetypes.hpp>
@@ -372,6 +373,11 @@ void log_mvpdrop( const map_session_data* sd, int32 monster_id, t_itemid nameid,
 void log_atcommand( map_session_data* sd, const char* message )
 {
 	nullpo_retv(sd);
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogAtcommand — tap before the commands/should-log gate.
+	session_seam()->onLogAtcommand( *sd, message );
+#endif
 
 	if( !log_config.commands ||
 	    !pc_should_log_commands(sd) )

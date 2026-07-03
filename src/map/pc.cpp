@@ -70,6 +70,12 @@
 #include "unit.hpp" // unit_stop_attack(), unit_stop_walking()
 #include "vending.hpp" // struct s_vending
 
+#ifdef SATHENA
+// [SATHENA-SEAM] SessionSeam interface — consumed by the onSessionKeptAfterDetach hook in
+// pc_autotrade_timer (a boot-recovered clientless session activating in-world).
+#include <custom/seam_session.hpp>
+#endif
+
 using namespace rathena;
 
 JobDatabase job_db;
@@ -14930,7 +14936,15 @@ TIMER_FUNC(pc_autotrade_timer){
 	if (!sd->vender_id && !sd->buyer_id) {
 		sd->state.autotrade = 0;
 		map_quit(sd);
+		return 0;
 	}
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] SessionSeam.onSessionKeptAfterDetach — this recovered session is now a
+	// persistent in-world background session with no attached client; a consumer may re-home its
+	// map object id (after load) so more than one session per account can coexist in-world.
+	session_seam()->onSessionKeptAfterDetach( *sd );
+#endif
 
 	return 0;
 }

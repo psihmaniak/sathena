@@ -699,8 +699,24 @@ void chrif_authok(int32 fd) {
 		node->char_id == char_id &&
 		node->login_id1 == login_id1 )
 	{ //Auth Ok
-		if (pc_authok(sd, login_id2, expiration_time, group_id, status, changing_mapservers))
+		if (pc_authok(sd, login_id2, expiration_time, group_id, status, changing_mapservers)) {
+#ifdef SATHENA
+			// The played account (loaded from the character's own record) may differ from the
+			// login account that authenticated. Align this session with the played account before
+			// it is indexed (map_addiddb runs later, in pc_reg_received) and before the
+			// account-keyed load pushes (inventory/cart/storage/regs arrive via
+			// map_id2sd(account_id)). auth_db is keyed by account id, so re-home this node too, so
+			// later account-keyed map bookkeeping (auth-finish, save-ack, logout) stays consistent.
+			// All no-ops in vanilla, where the two accounts always match.
+			if( node->account_id != sd->status.account_id ){
+				sd->id = sd->status.account_id;
+				idb_remove( auth_db, node->account_id );
+				node->account_id = sd->status.account_id;
+				idb_put( auth_db, node->account_id, node );
+			}
+#endif
 			return;
+		}
 	} else { //Auth Failed
 		pc_authfail(sd);
 	}

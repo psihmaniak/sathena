@@ -55,6 +55,11 @@
 #include "trade.hpp"
 #include "vending.hpp"
 
+#ifdef SATHENA
+// [SATHENA-SEAM] SessionSeam interface — consumed by the onSessionKeptAfterDetach hook below.
+#include <custom/seam_session.hpp>
+#endif
+
 using namespace rathena;
 
 #define ATCOMMAND_LENGTH 50
@@ -6844,6 +6849,13 @@ ACMD_FUNC(autotrade) {
 
 	channel_pcquit(sd,0xF); //leave all chan
 	clif_authfail_fd(sd->fd, 15);
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] SessionSeam.onSessionKeptAfterDetach — the client has detached but this map
+	// session persists in-world; a consumer may re-home it to a distinct map object id so more
+	// than one session per account can coexist in-world.
+	session_seam()->onSessionKeptAfterDetach( *sd );
+#endif
 
 	chrif_save(sd, CSAVE_AUTOTRADE);
 

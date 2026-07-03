@@ -24,6 +24,8 @@
 #include <common/showmsg.hpp>
 #include <common/socket.hpp>
 #include <common/strlib.hpp>
+
+#include <custom/seam_session.hpp>
 #include <common/timer.hpp>
 #include <common/utilities.hpp>
 #include <common/utils.hpp>
@@ -119,6 +121,11 @@ void char_set_charselect(uint32 account_id) {
 }
 
 void char_set_char_online(int32 map_id, uint32 char_id, uint32 account_id) {
+#ifdef SATHENA
+	// [SATHENA-SEAM] SessionSeam.onCharOnline — a consumer may track this char's online state
+	// out-of-band from the account-keyed online_char_db; return true to skip the vanilla slot.
+	if( session_seam()->onCharOnline( map_id, char_id, account_id ) ) return;
+#endif
 	//Update DB
 	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `online`='1', `last_login`=NOW() WHERE `char_id`='%d' LIMIT 1", schema_config.char_db, char_id) )
 		Sql_ShowDebug(sql_handle);
@@ -160,6 +167,11 @@ void char_set_char_online(int32 map_id, uint32 char_id, uint32 account_id) {
 }
 
 void char_set_char_offline(uint32 char_id, uint32 account_id){
+#ifdef SATHENA
+	// [SATHENA-SEAM] SessionSeam.onCharOffline — pairs with onCharOnline; return true if a
+	// consumer owns this char's out-of-band offline teardown, to skip the vanilla path.
+	if( session_seam()->onCharOffline( char_id, account_id ) ) return;
+#endif
 	if ( char_id == -1 )
 	{
 		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `online`='0' WHERE `account_id`='%d'", schema_config.char_db, account_id) )
@@ -1010,6 +1022,11 @@ int32 char_mmo_chars_fromsql( char_session_data& sd, CHARACTER_INFO chars[], uin
 		sd.char_moves[p.slot] = p.character_moves;
 	}
 
+#ifdef SATHENA
+	// a consumer may add selectable characters to this account's list (advances i, returns bytes)
+	j += session_seam()->appendSelectableChars( sd, chars, i );
+#endif
+
 	if( count != nullptr ){
 		*count = i;
 	}
@@ -1543,6 +1560,13 @@ int32 char_divorce_char_sql(int32 partner_id1, int32 partner_id2){
  * Returns < 0 for error
  */
 enum e_char_del_response char_delete(struct char_session_data* sd, uint32 char_id){
+#ifdef SATHENA
+	// the deletion choke — a consumer may forbid deleting this character for this session. Placed
+	// here (not only at the request handler) so it covers EVERY delete path: delete2 reserve/accept
+	// and the legacy single-step delchar. Every caller passes a valid session; default is allowed.
+	if( !session_seam()->actionAllowed( sd->account_id, char_id, SEAM_ACTION_CHAR_DELETE ) )
+		return CHAR_DELETE_NOTFOUND;
+#endif
 	char name[NAME_LENGTH];
 	char esc_name[NAME_LENGTH*2+1]; //Name needs be escaped.
 	uint32 account_id;

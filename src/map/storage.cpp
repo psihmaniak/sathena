@@ -12,6 +12,8 @@
 #include <common/showmsg.hpp>
 #include <common/utilities.hpp>
 
+#include <custom/seam_session.hpp>
+
 #include "battle.hpp"
 #include "chrif.hpp"
 #include "clif.hpp"
@@ -136,6 +138,13 @@ int32 storage_storageopen(map_session_data *sd)
 
 	if(sd->state.storage_flag)
 		return 1; //Already open?
+
+#ifdef SATHENA
+	// a consumer may forbid opening account storage for this session
+	if( !session_seam()->actionAllowed( sd->id, sd->status.char_id, SEAM_ACTION_STORAGE_OPEN ) ){
+		return 1;
+	}
+#endif
 
 	if( !pc_can_give_items(sd) ) { // check is this GM level is allowed to put items to storage
 		clif_displaymessage( sd->fd, msg_txt( sd, 246 ) ); // Your GM level doesn't authorize you to perform this action.

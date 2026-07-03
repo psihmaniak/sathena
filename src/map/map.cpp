@@ -48,6 +48,8 @@
 #ifdef SATHENA
 // [SATHENA-SEAM] NpcSeam interface — consumed by the onRegisterScripts hook in do_init.
 #include <custom/seam_content.hpp>
+// [SATHENA-SEAM] MapShardSeam interface — consumed by the keepMap hook in map_addmap.
+#include <custom/seam_session.hpp>
 #endif
 #include "party.hpp"
 #include "path.hpp"
@@ -2220,6 +2222,20 @@ void map_deliddb(block_list *bl)
 }
 
 /*==========================================
+ * Re-key a block_list in the id indexes under a new object id: remove it under its current id,
+ * set bl->id = new_id, and re-add it. Mirrors map_deliddb + map_addiddb so id_db/pc_db (and the
+ * type-specific indexes) stay consistent; charid_db is re-put under the unchanged char_id.
+ *------------------------------------------*/
+void map_reassign_object_id(block_list *bl, int32 new_id)
+{
+	nullpo_retv(bl);
+
+	map_deliddb(bl);
+	bl->id = new_id;
+	map_addiddb(bl);
+}
+
+/*==========================================
  * Standard call when a player connection is closed.
  *------------------------------------------*/
 int32 map_quit(map_session_data *sd) {
@@ -3728,6 +3744,14 @@ int32 map_addmap(char* mapname)
 		instance_start = 0;
 		return 0;
 	}
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] MapShardSeam.keepMap — drop maps not assigned to this shard instance.
+	// PLACEMENT: top of map_addmap (after "clear"), before the map is registered, so a
+	// dropped map never enters the list / loads its cache. Default keeps all.
+	if( !session_seam()->keepMap( mapname ) )
+		return 0;
+#endif
 
 	if (map_num >= MAX_MAP_PER_SERVER - 1) {
 		ShowError("Could not add map '" CL_WHITE "%s" CL_RESET "', the limit of maps has been reached.\n", mapname);

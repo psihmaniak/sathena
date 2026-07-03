@@ -574,7 +574,9 @@ bool buyingstore_searchall( const map_session_data* sd, const struct s_search_st
 		std::shared_ptr<s_search_store_info_item> ssitem = std::make_shared<s_search_store_info_item>();
 
 		ssitem->store_id = sd->buyer_id;
-		ssitem->account_id = sd->status.account_id;
+		// reference the store by its map object id (== account_id for a normal player; decoupled
+		// when a session's map object id is distinct from its account_id)
+		ssitem->account_id = sd->id;
 		safestrncpy( ssitem->store_name, sd->message, sizeof( ssitem->store_name ) );
 		ssitem->nameid = it->nameid;
 		ssitem->amount = it->amount;
