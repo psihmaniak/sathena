@@ -25,6 +25,10 @@
 #include "pc.hpp"
 #include "pc_groups.hpp"
 
+#ifdef SATHENA
+#include <custom/seam_economy.hpp>
+#endif
+
 static uint32 vending_nextid = 0; ///Vending_id counter
 static DBMap *vending_db; ///DB holder the vender : charid -> map_session_data
 
@@ -105,10 +109,20 @@ void vending_vendinglistreq(map_session_data* sd, int32 id)
  */
 static double vending_calc_tax(map_session_data *sd, double zeny)
 {
+#ifdef SATHENA
+	// [SATHENA-SEAM] VendingFeeSeam.onVendingTax — resolve the vanilla rate (basis points) into a
+	// local, pass it by reference for the consumer to mutate, then apply. PLACEMENT: replaces the
+	// inline apply so the rate is a single mutable value. Default no-op => vanilla rate.
+	double rate = (battle_config.vending_tax && zeny >= battle_config.vending_tax_min) ? (double)battle_config.vending_tax : 0.;
+	economy_seam()->onVendingTax( sd, zeny, rate );
+	zeny -= zeny * (rate / 10000.);
+	return zeny;
+#else
 	if (battle_config.vending_tax && zeny >= battle_config.vending_tax_min)
 		zeny -= zeny * (battle_config.vending_tax / 10000.);
 
 	return zeny;
+#endif
 }
 
 /**

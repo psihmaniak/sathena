@@ -10,6 +10,7 @@
 #include <custom/seam_content.hpp>
 #include <custom/seam_follower.hpp>
 #include <custom/seam_chat.hpp>
+#include <custom/seam_economy.hpp>
 #endif
 
 #include <common/cbasetypes.hpp>
@@ -181,6 +182,11 @@ void log_branch( map_session_data* sd )
 {
 	nullpo_retv(sd);
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogBranch — tap before the config gate.
+	economy_seam()->onLogBranch( *sd );
+#endif
+
 	if( !log_config.branch )
 		return;
 
@@ -214,6 +220,14 @@ void log_branch( map_session_data* sd )
 void log_pick( int32 id, int16 m, e_log_pick_type type, int32 amount, const item* itm )
 {
 	nullpo_retv(itm);
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogPick — tap item flow BEFORE the enable_logs gate, so the
+	// consumer funnels every pick/drop/trade (with the item unique_id) regardless of the
+	// vanilla sink config. PLACEMENT: after nullpo, before the enable_logs early-return.
+	economy_seam()->onLogPick( id, m, type, amount, itm );
+#endif
+
 	if( ( log_config.enable_logs&type ) == 0 )
 	{// disabled
 		return;
@@ -283,6 +297,11 @@ void log_pick_mob( const mob_data* md, e_log_pick_type type, int32 amount, const
 // ids are char_ids
 void log_zeny( const map_session_data &target_sd, e_log_pick_type type, uint32 src_id, int32 amount )
 {
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogZeny — tap zeny flow BEFORE the config gate.
+	economy_seam()->onLogZeny( target_sd, type, src_id, amount );
+#endif
+
 	if( !log_config.zeny || ( log_config.zeny != 1 && abs(amount) < log_config.zeny ) )
 		return;
 
@@ -315,6 +334,11 @@ void log_zeny( const map_session_data &target_sd, e_log_pick_type type, uint32 s
 void log_mvpdrop( const map_session_data* sd, int32 monster_id, t_itemid nameid, t_exp exp )
 {
 	nullpo_retv(sd);
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogMvpdrop — tap before the config gate.
+	economy_seam()->onLogMvpdrop( *sd, monster_id, nameid, exp );
+#endif
 
 	if( !log_config.mvpdrop )
 		return;
@@ -515,6 +539,11 @@ void log_chat( e_log_chat_type type, int32 type_id, int32 src_charid, int32 src_
 /// logs cash transactions
 void log_cash( const map_session_data* sd, e_log_pick_type type, e_log_cash_type cash_type, int32 amount ){
 	nullpo_retv( sd );
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogCash — tap before the config gate.
+	economy_seam()->onLogCash( *sd, type, cash_type, amount );
+#endif
 
 	if( !log_config.cash )
 		return;

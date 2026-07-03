@@ -5,6 +5,7 @@
 #ifdef SATHENA
 #include <custom/seam_battle.hpp>
 #include <custom/seam_mob.hpp>
+#include <custom/seam_economy.hpp>
 #endif
 
 #include <algorithm>
@@ -2898,6 +2899,13 @@ int32 mob_getdroprate(block_list *src, std::shared_ptr<s_mob_db> mob, int32 base
 		// If not - cap to 0.01% or 0.001% drop rate - as on official servers
 		drop_rate = max( drop_rate, 1 );
 	}
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] DropSeam.onDropRate — final per-context drop-rate decision. PLACEMENT:
+	// the single return of mob_getdroprate, which every drop rate (regular/card/loot) flows
+	// through; consumer adjusts the rate by killer(src)/mob context (event mult, punishment).
+	economy_seam()->onDropRate( src, md, drop_rate );
+#endif
 
 	return drop_rate;
 }
