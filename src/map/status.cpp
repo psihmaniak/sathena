@@ -3,6 +3,12 @@
 
 #include "status.hpp"
 
+#ifdef SATHENA
+// [SATHENA-SEAM] StatusSeam interface — consumed by onStatusStart (end of status_change_start)
+// and the onStatusEnd veto (in status_change_end).
+#include <custom/seam_character.hpp>
+#endif
+
 #include <cmath>
 #include <cstdlib>
 #include <functional>
@@ -6512,6 +6518,12 @@ void status_calc_bl_main(block_list& bl, std::bitset<SCB_MAX> flag)
 
 	if(flag[SCB_REGEN] && bl.type & BL_REGEN)
 		status_calc_regen_rate(&bl, status_get_regen_data(&bl), sc);
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] FormulaSeam.onStatusCalc — every stat field recomputed. PLACEMENT: the tail
+	// of status_calc_bl_main, after the regen recalcs and before return, bl passed by reference.
+	character_seam()->onStatusCalc( bl );
+#endif
 }
 
 /**
@@ -13353,6 +13365,14 @@ static bool status_change_start_post_delay(block_list* src, block_list* bl, sc_t
 	if( opt_flag[SCF_ONTOUCH] && sd && !sd->npc_ontouch_.empty() )
 		npc_touchnext_areanpc(sd,false); // Run OnTouch_ on next char in range
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] StatusSeam.onStatusStart — an SC has been committed. PLACEMENT: the
+	// success tail of status_change_start_post_delay (where the sce is created, all
+	// early-outs/resists passed), so a consumer reacts to a live SC: ensemble mutex,
+	// on-inflict mirror, umbrella-immunity. `tick` is the applied duration.
+	character_seam()->onStatusStart( bl, type, val1, tick );
+#endif
+
 	return true;
 }
 
@@ -13449,6 +13469,15 @@ int32 status_change_end( block_list* bl, enum sc_type type, int32 tid ){
 	if( status_change_entry* sce = sc->getSCE( type ); sce != nullptr ){
 		if (sce->timer != tid && tid != INVALID_TIMER)
 			return 0;
+
+#ifdef SATHENA
+		// [SATHENA-SEAM] StatusSeam.onStatusEnd — veto removal (return false) for dispel/death
+		// policy (NoDispel / NoRemoveOnDead). PLACEMENT: after the stale-timer guard, before
+		// removal. `forced` = tid == INVALID_TIMER (dispel/death/manual) vs a natural timer
+		// expiry, so a consumer scopes its veto to forced ends and never freezes a timer.
+		if( !character_seam()->onStatusEnd( bl, type, tid == INVALID_TIMER ) )
+			return 0;
+#endif
 
 		if (tid == INVALID_TIMER) {
 			if (type == SC_ENDURE && sce->val4)
@@ -15465,6 +15494,13 @@ static int32 status_natural_heal(block_list* bl, va_list args)
 	regen = status_get_regen_data(bl);
 	if (!regen)
 		return 0;
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] RegenSeam.onRegenTick — rework regen amounts/rates per tick. PLACEMENT:
+	// after the regen_data is fetched, BEFORE its flag/rates are read below, so a consumer's
+	// edits to regen->flag / regen->rate take effect this tick. Intervals are conf, not here.
+	character_seam()->onRegenTick( bl, regen );
+#endif
 
 	status_data* status = status_get_status_data(*bl);
 
