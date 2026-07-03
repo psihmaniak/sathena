@@ -47,6 +47,11 @@
 #include "strlib.hpp"
 #include "timer.hpp"
 
+#ifdef SATHENA
+// [SATHENA-SEAM] NetSeam interface — consumed by the onPacketSend hook in WFIFOSET below.
+#include <custom/seam_auth.hpp>
+#endif
+
 // Reuseable global packet buffer to prevent too many allocations
 // Take socket.cpp::socket_max_client_packet into consideration
 int8 packet_buffer[UINT16_MAX];
@@ -867,6 +872,16 @@ int32 WFIFOSET(int32 fd, size_t len)
 		}
 
 	}
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] NetSeam.onPacketSend — the ONE egress choke: every outgoing packet
+	// (client AND inter-server) passes WFIFOSET exactly once. PLACEMENT: after every
+	// validation/drop path above, immediately before the packet is committed to the write
+	// FIFO — buf points at the packet start (id = first 2 bytes, little-endian). If
+	// upstream refactors WFIFOSET, re-attach right before the wdata_size commit.
+	auth_seam()->onPacketSend( fd, s->wdata + s->wdata_size, len );
+#endif
+
 	s->wdata_size += len;
 #ifdef SHOW_SERVER_STATS
 	socket_data_qo += len;
