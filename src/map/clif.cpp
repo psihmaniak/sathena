@@ -59,6 +59,12 @@
 #include "unit.hpp"
 #include "vending.hpp"
 
+#ifdef SATHENA
+// [SATHENA-SEAM] ChatSeam interface — consumed by the onChatSend hook in clif_process_message
+// and the onChatDeliver hook in clif_GlobalMessage.
+#include <custom/seam_chat.hpp>
+#endif
+
 using namespace rathena;
 
 static inline uint32 client_tick( t_tick tick ){
@@ -6754,6 +6760,13 @@ void clif_broadcast( const block_list* bl, const char* mes, size_t len, int32 ty
 void clif_GlobalMessage( const block_list& bl, const char* message, enum send_target target ){
 	nullpo_retv(message);
 
+#ifdef SATHENA
+	// [SATHENA-SEAM] ChatSeam.onChatDeliver — a message is being broadcast to `target`.
+	// PLACEMENT: top of clif_GlobalMessage; the consumer taps delivery (per-player ignore
+	// extension, analytics) and is the anchor for the i18n translation override.
+	chat_seam()->onChatDeliver( bl, message );
+#endif
+
 	int16 len = (int16)( strlen( message ) + 1 );
 
 	if( len > CHAT_SIZE_MAX ) {
@@ -10543,6 +10556,15 @@ static bool clif_process_message(map_session_data* sd, bool whisperFormat, char*
 		safestrncpy( out_name, name, nameLength + 1 );
 	}
 	safestrncpy( out_message, message, messageLength );
+
+#ifdef SATHENA
+	// [SATHENA-SEAM] ChatSeam.onChatSend — the validated player chat line. PLACEMENT: after
+	// name+message are extracted and BEFORE out_full_message is composed, so a consumer's
+	// in-place rewrite of out_name/out_message propagates to what's broadcast; return false
+	// to BLOCK the line (process_message fails → nothing sent).
+	if( !chat_seam()->onChatSend( sd, out_name, out_message ) )
+		return false;
+#endif
 
 	if( whisperFormat ){
 		sprintf( out_full_message, "%-24s%s", out_name, out_message );

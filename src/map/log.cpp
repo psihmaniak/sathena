@@ -8,8 +8,8 @@
 #ifdef SATHENA
 // [SATHENA-SEAM] ContentSeam interface — consumed by the onLogNpc/onLogNpcData hooks at the top of log_npc.
 #include <custom/seam_content.hpp>
-// [SATHENA-SEAM] FollowerSeam interface — consumed by the onLogFeeding hook in log_feeding.
 #include <custom/seam_follower.hpp>
+#include <custom/seam_chat.hpp>
 #endif
 
 #include <common/cbasetypes.hpp>
@@ -466,6 +466,11 @@ void log_npc( map_session_data* sd, const char* message )
 /// logs chat
 void log_chat( e_log_chat_type type, int32 type_id, int32 src_charid, int32 src_accid, const char* mapname, int32 x, int32 y, const char* dst_charname, const char* message )
 {
+#ifdef SATHENA
+	// [SATHENA-SEAM] LogSeam.onLogChat — tap before the chat-type/woe gate (dst_charname may be null here).
+	chat_seam()->onLogChat( type, type_id, src_charid, src_accid, mapname, x, y, dst_charname, message );
+#endif
+
 	if( ( log_config.chat&type ) == 0 )
 	{// disabled
 		return;
