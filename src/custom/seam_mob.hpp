@@ -6,10 +6,9 @@
 
 // [SATHENA-SEAM interface] MobSeam — a per-mob AI-tick override. onAiTick fires each 100ms think
 // cycle after the vanilla early-outs (mob alive, thinktime elapsed, not stunned) and BEFORE the
-// vanilla skill+target cascade; return true to REPLACE this tick's vanilla AI (threat table,
-// tank-swap, positional kite), false to run vanilla. Default no-op (returns false) => pure
-// vanilla AI. A consumer build replaces the instance via mob_seam() = &my_instance; the accessor
-// uses function-local statics so registration order is safe.
+// vanilla skill+target cascade; return true to REPLACE this tick's AI, false to run vanilla.
+// Default no-op (returns false) => pure vanilla AI. A consumer build replaces the instance via
+// mob_seam() = &my_instance; the accessor uses function-local statics so registration order is safe.
 
 #include "../common/timer.hpp"   // t_tick
 

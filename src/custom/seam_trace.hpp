@@ -4,12 +4,11 @@
 #ifndef SEAM_TRACE_HPP
 #define SEAM_TRACE_HPP
 
-// [SATHENA-SEAM helper] seam_trace — structured JSONL trace for seam call-sites and tests.
-// Compiled to a no-op unless THENRO_TEST is defined (test builds only; prod pays nothing).
-// Output: log/seam_trace.jsonl, one {"t":ms,"sub":...,"ev":...,"d":...} object per line —
-// greppable with jq; the assert backend of the headless E2E harness (docs/testing.md).
+// [SATHENA-SEAM helper] seam_trace — structured JSONL trace for seam call-sites.
+// No-op unless SEAM_TRACE is defined (instrumented builds only; prod pays nothing).
+// Output: log/seam_trace.jsonl, one {"t":ms,"sub":...,"ev":...,"d":...} object per line.
 
-#ifdef THENRO_TEST
+#ifdef SEAM_TRACE
 
 #include <chrono>
 #include <cstdarg>
@@ -70,6 +69,6 @@ inline void seam_trace( const char* subsys, const char* event, const char* fmt =
 
 inline void seam_trace( const char*, const char*, const char* = "", ... ){}
 
-#endif /* THENRO_TEST */
+#endif /* SEAM_TRACE */
 
 #endif /* SEAM_TRACE_HPP */

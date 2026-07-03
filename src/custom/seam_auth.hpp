@@ -23,8 +23,8 @@ struct AuthSeam{
 	virtual void onPacketSend( int32_t fd, const unsigned char* buf, size_t len ){}
 
 	// Fires at the login dup-login gate; return true to SPARE the existing session (skip the
-	// kick+reject) so a player can re-login while their autotrader/shared session persists.
-	// Default false => vanilla kick+reject.
+	// kick+reject) so a persistent background session survives a re-login. Default false =>
+	// vanilla kick+reject.
 	virtual bool onAccountAlreadyOnline( uint32 account_id, int32 char_server ){ return false; }
 
 	virtual ~AuthSeam() = default;

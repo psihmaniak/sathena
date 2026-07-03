@@ -36,7 +36,7 @@ struct EconomySeam{
 	virtual void onLogBranch( const map_session_data& sd ){}
 	// MVP kill reward. monster_id = mob, nameid = prize item (0 if none), exp = mvp exp.
 	virtual void onLogMvpdrop( const map_session_data& sd, int32 monster_id, uint32 nameid, int64 exp ){}
-	// cash-point (Kafra/premium) flow. type = e_log_pick_type, cash_type = e_log_cash_type.
+	// cash-point flow. type = e_log_pick_type, cash_type = e_log_cash_type.
 	virtual void onLogCash( const map_session_data& sd, int32 type, int32 cash_type, int32 amount ){}
 
 	virtual ~EconomySeam() = default;

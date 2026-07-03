@@ -1,8 +1,8 @@
 # SessionSeam — dev notes (mechanism only)
 
 > Per-seam working notes: **why** the hooks are shaped this way + **gotchas**, so the next change here
-> starts informed. Mechanism only — no product/application detail (that lives in the private thenro
-> docs, referenced at the bottom). Keep this updated whenever you touch SessionSeam.
+> starts informed. Mechanism only — the applications that consume these hooks live in the consumer
+> repo, not here. Keep this updated whenever you touch SessionSeam.
 
 ## What it is
 Session / routing policy spanning the **login, char, and map** servers. One header
@@ -73,15 +73,6 @@ it is a no-op there.
   happens, not at one of its callers.
 
 ## Build / test gotchas
-- A single-seam branch has only its own + `ContentSeam` headers, and the full `thenro/src` consumer is
-  broken post-rebuild (old accessors). To COMPILE-check the seam inert: `./build.sh --vanilla --test
-  <char|map>`. To test WITH a consumer: build against a MINIMAL isolated `CUSTOM_SRC_DIR` (not thenro/src).
-- Backgrounded servers do NOT persist across tool calls; server logs must go UNDER the scratchpad (bare
-  `/tmp` is sandbox-blocked for bg procs).
-- Killing test servers: use `pkill -x <name>` — `pkill -f 'X-server'` matches the tool's own wrapper and
-  self-kills the command.
-
-## Product/application context (private)
-The consumer applications that fill these hooks (and their whys) are in the PRIVATE thenro docs, not
-here: `thenro/docs/SESSIONSEAM-AUTOTRADER-DESIGN.md`, `thenro/docs/AUTOTRADER-NOTES.md`,
-`thenro/docs/FEATURE-SEAM-MAP.md`. Never copy that detail into this file.
+- COMPILE-check the seam inert (SATHENA on, no consumer): a vanilla instrumented build of `char`/`map`
+  (`CUSTOM_SRC_DIR=""`, `CUSTOM_DEFINES="-DSEAM_TRACE"`). To test WITH a consumer, build against a minimal
+  isolated `CUSTOM_SRC_DIR`, not the full consumer tree.
